@@ -7,6 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
 import { AuthorizedLayout } from "./components/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
+import { SoundPlayer } from "./pages/SoundPlayer";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
             <Route path="/" element={<Dashboard />} />
             <Route path="sound/*" element={<Outlet />}>
               <Route path="/" element={<SoundList />} />
+              <Route path="/play" element={<SoundPlayer />} />
             </Route>
             <Route path="profile/*" element={<div>Profile</div>} />
           </Routes>

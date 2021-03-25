@@ -5,11 +5,12 @@ type SoundCardProps = {
   coverURL?: string;
   title?: string;
   time?: number;
+  onClick?: () => void;
 };
 
 function SoundCard(props: SoundCardProps) {
   return (
-    <Root>
+    <Root onClick={props.onClick}>
       <Left>
         <ImageContainer>
           <img src={props.coverURL} alt="Sound Cover" />

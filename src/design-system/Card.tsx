@@ -20,9 +20,13 @@ const CardRoot = styled.div(
   `
 );
 
-function PlayButton() {
+type PlayButtonProps = {
+  onClick?: () => void;
+};
+
+function PlayButton(props: PlayButtonProps) {
   return (
-    <PlayButtonRoot>
+    <PlayButtonRoot onClick={props.onClick}>
       Play Now <PlayCircleIcon />
     </PlayButtonRoot>
   );
