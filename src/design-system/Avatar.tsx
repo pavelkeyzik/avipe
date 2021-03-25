@@ -7,9 +7,9 @@ function Avatar(props: React.PropsWithChildren<any>) {
 
 const Root = styled.div(
   ({ theme }) => css`
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     background: ${theme.avatar.background};
     overflow: hidden;
 
