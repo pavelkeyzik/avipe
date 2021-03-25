@@ -1,23 +1,27 @@
 const theme = {
+  body: {
+    background: "#16161f",
+    foreground: "#fdfdfe",
+  },
   contentPadding: "40px",
   avatar: {
-    background: "#192324",
+    background: "#0f0f16",
   },
   card: {
-    background: "#F7F3F0",
-    foreground: "#253334",
+    background: "#efebfd",
+    foreground: "#16161f",
   },
   soundCard: {
     backgroundHover: "rgba(255, 255, 255, 0.1)",
-    imageBackground: "#192324",
+    imageBackground: "#0f0f16",
     timeForeground: "rgba(255, 255, 255, 0.5)",
-    textForeground: "rgba(255, 255, 255, 0.75)",
-    textForegroundHover: "#ffffff",
+    textForeground: "white",
+    textForegroundHover: "#a792fd",
   },
   button: {
-    background: "#253334",
-    backgroundHover: "#1C2222",
-    foreground: "#fff",
+    background: "#16161f",
+    backgroundHover: "#433a65",
+    foreground: "#fdfdfe",
   },
 };
 

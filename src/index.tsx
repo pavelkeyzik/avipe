@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider } from "@emotion/react";
@@ -8,10 +7,12 @@ import { theme } from "./theme";
 import { AuthorizedLayout } from "./components/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
 import { SoundPlayer } from "./pages/SoundPlayer";
+import { GlobalStyle } from "./components/GlobalStyle";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <BrowserRouter>
         <AuthorizedLayout>
           <Routes>
