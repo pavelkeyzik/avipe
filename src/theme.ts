@@ -19,9 +19,14 @@ const theme = {
     textForegroundHover: "#a792fd",
   },
   button: {
-    background: "#403c65",
-    backgroundHover: "#201e32",
-    foreground: "#fdfdfe",
+    background: "#fdfdfe",
+    backgroundHover: "#edebff",
+    foreground: "#403c65",
+  },
+  input: {
+    border: "#5c5c63",
+    borderFocus: "#ffffff",
+    foreground: "#ffffff",
   },
 };
 

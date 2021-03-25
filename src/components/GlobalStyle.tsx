@@ -22,6 +22,10 @@ const globalStyles = css`
     margin: 12px 0 8px;
   }
 
+  h3 {
+    font-weight: 300;
+  }
+
   p {
     margin: 4px 0;
   }
