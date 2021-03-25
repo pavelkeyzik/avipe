@@ -8,8 +8,8 @@ const theme = {
     background: "#0f0f16",
   },
   card: {
-    background: "#efebfd",
-    foreground: "#16161f",
+    background: "#746db6",
+    foreground: "white",
   },
   soundCard: {
     backgroundHover: "rgba(255, 255, 255, 0.1)",
@@ -19,8 +19,8 @@ const theme = {
     textForegroundHover: "#a792fd",
   },
   button: {
-    background: "#16161f",
-    backgroundHover: "#433a65",
+    background: "#403c65",
+    backgroundHover: "#201e32",
     foreground: "#fdfdfe",
   },
 };
