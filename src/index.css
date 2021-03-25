@@ -13,3 +13,11 @@ body {
 * {
   box-sizing: border-box;
 }
+
+h2 {
+  margin: 12px 0 8px;
+}
+
+p {
+  margin: 4px 0;
+}

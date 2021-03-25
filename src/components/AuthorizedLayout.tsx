@@ -40,13 +40,20 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
 const LayoutGrid = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 `;
 
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TopNavigation = styled.div`
