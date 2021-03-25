@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
 import { AuthorizedLayout } from "./components/AuthorizedLayout";
+import { SoundList } from "./pages/SoundList";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
         <AuthorizedLayout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="sound/*" element={<div>Sound</div>} />
+            <Route path="sound/*" element={<Outlet />}>
+              <Route path="/" element={<SoundList />} />
+            </Route>
             <Route path="profile/*" element={<div>Profile</div>} />
           </Routes>
         </AuthorizedLayout>

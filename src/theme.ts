@@ -7,6 +7,13 @@ const theme = {
     background: "#F7F3F0",
     foreground: "#253334",
   },
+  soundCard: {
+    backgroundHover: "rgba(255, 255, 255, 0.1)",
+    imageBackground: "#192324",
+    timeForeground: "rgba(255, 255, 255, 0.5)",
+    textForeground: "rgba(255, 255, 255, 0.75)",
+    textForegroundHover: "#ffffff",
+  },
   button: {
     background: "#253334",
     backgroundHover: "#1C2222",
