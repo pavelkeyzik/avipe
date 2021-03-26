@@ -1,36 +1,42 @@
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router";
 import { Card } from "../design-system/Card";
 
 function Dashboard() {
-  const navigate = useNavigate();
-
-  function playSound() {
-    navigate("sound/play");
-  }
-
   return (
     <Root>
       <div>
         <h1>Welcome back, Pavel!</h1>
         <p>How are you feeling today?</p>
       </div>
-      <Card>
-        <h2>Cardio Meditation</h2>
-        <p>Basics of Yoga for Beginners or Experienced Professionals</p>
-        <Card.PlayButton onClick={playSound} />
-      </Card>
-      <Card>
-        <h2>Meditation 101</h2>
-        <p>Techniques, Benefits, and a Beginner’s How-To</p>
-        <Card.PlayButton onClick={playSound} />
-      </Card>
+      <CardGrid>
+        <Card>
+          <Card.Content>
+            <h2>Cardio Meditation</h2>
+            <p>Basics of Yoga for Beginners or Experienced Professionals</p>
+          </Card.Content>
+          <Card.PlayButton />
+        </Card>
+        <Card>
+          <Card.Content>
+            <h2>Meditation 101</h2>
+            <p>Techniques, Benefits, and a Beginner’s How-To</p>
+          </Card.Content>
+          <Card.PlayButton />
+        </Card>
+      </CardGrid>
     </Root>
   );
 }
 
 const Root = styled.div`
   display: grid;
+  grid-gap: 20px;
+`;
+
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 320px;
   grid-gap: 20px;
 `;
 

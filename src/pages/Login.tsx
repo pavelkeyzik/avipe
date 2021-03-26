@@ -1,12 +1,12 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ContentWidth } from "../components/ContentWidth";
 import { Button } from "../design-system/Button";
 import { Input } from "../design-system/Input";
 
 function Login() {
   return (
     <Root>
-      <ContentWidth>
+      <ContentContainer>
         <h1>Let's sign you in.</h1>
         <p>To use application you have to sign in</p>
         <FormGrid>
@@ -16,7 +16,7 @@ function Login() {
             <Button shape="square">Sign In</Button>
           </FormFooter>
         </FormGrid>
-      </ContentWidth>
+      </ContentContainer>
     </Root>
   );
 }
@@ -27,6 +27,15 @@ const Root = styled.div`
   justify-content: center;
   height: 100vh;
 `;
+
+const ContentContainer = styled.div(
+  ({ theme }) => css`
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 ${theme.contentPadding};
+  `
+);
 
 const FormGrid = styled.div`
   margin-top: 40px;

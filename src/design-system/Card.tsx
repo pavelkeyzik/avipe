@@ -20,6 +20,13 @@ const CardRoot = styled.div(
   `
 );
 
+const CardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+`;
+
 type PlayButtonProps = {
   onClick?: () => void;
 };
@@ -37,5 +44,6 @@ const PlayButtonRoot = styled(Button)`
 `;
 
 Card.PlayButton = PlayButton;
+Card.Content = CardContent;
 
 export { Card };
