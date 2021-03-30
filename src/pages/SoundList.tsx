@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { usePlayer } from "../core/hooks/use-player";
 import { useSongsList } from "../core/hooks/use-songs";
-import { Card } from "../design-system/Card";
 import { SoundCard } from "../design-system/SoundCard";
 
 function SoundList() {
@@ -14,11 +13,7 @@ function SoundList() {
 
   return (
     <RootGrid>
-      <Card>
-        <h2>Meditation 101</h2>
-        <p>Techniques, Benefits, and a Beginner’s How-To</p>
-        <Card.PlayButton />
-      </Card>
+      <h2>All Sounds</h2>
       <RootListGrid>
         {songsList.data.map((song: any) => (
           <SoundCard
