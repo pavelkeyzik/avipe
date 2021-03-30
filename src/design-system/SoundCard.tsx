@@ -1,19 +1,20 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { VolumeIcon } from "../components/icons/Volume";
+import { CurrentSong } from "../core/hooks/use-player";
 
 type SoundCardProps = {
-  id: number;
+  songData: CurrentSong;
   coverURL?: string;
   title?: string;
   time?: number;
   isPlaying?: boolean;
-  onClick?: (id: number) => void;
+  onClick?: (params: CurrentSong) => void;
 };
 
 function SoundCard(props: SoundCardProps) {
   function handleClick() {
-    props.onClick && props.onClick(props.id);
+    props.onClick && props.onClick(props.songData);
   }
 
   return (

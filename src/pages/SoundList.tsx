@@ -23,12 +23,14 @@ function SoundList() {
         {songsList.data.map((song: any) => (
           <SoundCard
             key={song.id}
-            id={song.id}
+            songData={song}
             coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
             title={song.name}
             time={30}
             onClick={player.play}
-            isPlaying={player.currentSong === song.id}
+            isPlaying={
+              player.currentSong ? player.currentSong.id === song.id : false
+            }
           />
         ))}
       </RootListGrid>

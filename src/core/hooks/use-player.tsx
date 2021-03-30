@@ -1,11 +1,17 @@
 import React, { createContext, useContext, useRef, useState } from "react";
 import { api } from "../api";
 
+type CurrentSong = {
+  id: number;
+  name: string;
+  artist: string;
+};
+
 type ContextType = {
   audioRef: React.MutableRefObject<any> | null;
-  currentSong: number | null;
-  setCurrentSong: (param: number | null) => void;
-  play: (id: number) => void;
+  currentSong: CurrentSong | null;
+  setCurrentSong: (param: CurrentSong | null) => void;
+  play: (id: CurrentSong) => void;
   stop: () => void;
 };
 
@@ -19,13 +25,13 @@ const PlayerContext = createContext<ContextType>({
 
 function PlayerProvider(props: React.PropsWithChildren<any>) {
   const audioRef = useRef<any>(new Audio());
-  const [currentSong, setCurrentSong] = useState<number | null>(null);
+  const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
 
-  function play(id: number) {
-    setCurrentSong(id);
+  function play(songToPlay: CurrentSong) {
+    setCurrentSong(songToPlay);
 
     if (audioRef) {
-      audioRef.current.src = api.getSongURL(id);
+      audioRef.current.src = api.getSongURL(songToPlay.id);
       audioRef.current.play();
     }
   }
@@ -57,4 +63,5 @@ function usePlayer() {
   return useContext(PlayerContext);
 }
 
+export type { CurrentSong };
 export { usePlayer, PlayerProvider };
