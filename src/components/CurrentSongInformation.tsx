@@ -27,6 +27,7 @@ function CurrentSongInformation() {
         </SoundInfo>
       </SoundInfoRoot>
       <PlayerControls>
+        <div>{player.currentTime}</div>
         <SkipBackIcon />
         <PlayButton>
           <PlayIcon />
