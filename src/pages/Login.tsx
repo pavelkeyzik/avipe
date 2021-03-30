@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { api } from "../core/api";
 import { Button } from "../design-system/Button";
 import { Input } from "../design-system/Input";
 
@@ -13,7 +14,9 @@ function Login() {
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Password" />
           <FormFooter>
-            <Button shape="square">Sign In</Button>
+            <Button shape="square" onClick={api.login}>
+              Sign In
+            </Button>
           </FormFooter>
         </FormGrid>
       </ContentContainer>

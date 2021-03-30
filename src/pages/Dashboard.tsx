@@ -1,28 +1,36 @@
 import styled from "@emotion/styled";
+import { useCurrentUser } from "../core/hooks/use-current-user";
+import { useMeditationPlaylists } from "../core/hooks/use-meditation-playlists";
 import { Card } from "../design-system/Card";
 
 function Dashboard() {
+  const meditationPlaylists = useMeditationPlaylists();
+  const currentUser = useCurrentUser();
+
+  if (meditationPlaylists.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Root>
       <div>
-        <h1>Welcome back, Pavel!</h1>
+        <h1>Welcome back, {currentUser.data?.display_name ?? "..."}!</h1>
         <p>How are you feeling today?</p>
       </div>
       <CardGrid>
-        <Card>
-          <Card.Content>
-            <h2>Cardio Meditation</h2>
-            <p>Basics of Yoga for Beginners or Experienced Professionals</p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
-        <Card>
-          <Card.Content>
-            <h2>Meditation 101</h2>
-            <p>Techniques, Benefits, and a Beginner’s How-To</p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
+        {meditationPlaylists.data?.playlists.items.map((item) => (
+          <Card key={item.id}>
+            {/* <Card.ImageContainer>
+              <img src={item.images[0].url} alt="Album cover" />
+            </Card.ImageContainer> */}
+            <Card.Content>
+              <span>{item.tracks.total} Tracks</span>
+              <h2>{item.name}</h2>
+              <p>{item.description}</p>
+            </Card.Content>
+            <Card.PlayButton />
+          </Card>
+        ))}
       </CardGrid>
     </Root>
   );
@@ -35,8 +43,7 @@ const Root = styled.div`
 
 const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 320px;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 `;
 

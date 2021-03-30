@@ -8,9 +8,17 @@ import { AuthorizedLayout } from "./components/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
 import { GlobalStyle } from "./components/GlobalStyle";
 import { Login } from "./pages/Login";
+import {
+  SpotifyAuthProvider,
+  useAuthState,
+} from "./core/hooks/use-spotify-auth";
+import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
+import { QueryClientProvider, QueryClient } from "react-query";
+
+const queryClient = new QueryClient();
 
 function Application() {
-  const isAuthorized = true;
+  const { isAuthorized } = useAuthState();
 
   if (isAuthorized) {
     return (
@@ -30,6 +38,10 @@ function Application() {
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route
+          path="/spotify-auth-callback"
+          element={<SpotifyAuthCallback />}
+        />
       </Routes>
     </div>
   );
@@ -37,12 +49,16 @@ function Application() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Application />
-      </BrowserRouter>
-    </ThemeProvider>
+    <SpotifyAuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <BrowserRouter>
+            <Application />
+          </BrowserRouter>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </SpotifyAuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
