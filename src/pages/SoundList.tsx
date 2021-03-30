@@ -19,7 +19,6 @@ function SoundList() {
         <p>Techniques, Benefits, and a Beginner’s How-To</p>
         <Card.PlayButton />
       </Card>
-      <audio ref={player.audioRef} hidden />
       <RootListGrid>
         {songsList.data.map((song: any) => (
           <SoundCard
@@ -29,7 +28,7 @@ function SoundList() {
             title={song.name}
             time={30}
             onClick={player.play}
-            isPlaying={player.currentSongId === song.id}
+            isPlaying={player.currentSong === song.id}
           />
         ))}
       </RootListGrid>
