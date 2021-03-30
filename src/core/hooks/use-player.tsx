@@ -17,8 +17,8 @@ type SongStatus = "idle" | "playing" | "paused" | "stopped";
 
 type ContextType = {
   currentSong: CurrentSong | null;
-  currentTime: string | null;
-  duration: string | null;
+  currentTime: number | null;
+  duration: number | null;
   status: SongStatus;
   setCurrentSong: (param: CurrentSong | null) => void;
   playSelectedSong: (param: CurrentSong | null) => void;
@@ -52,8 +52,8 @@ function getFormattedTimeFromSeconds(seconds: number, trim?: boolean) {
 
 function PlayerProvider(props: React.PropsWithChildren<any>) {
   const audio = React.useMemo(() => new Audio(), []);
-  const [duration, setDuration] = useState<string | null>(null);
-  const [currentTime, setCurrentTime] = useState<string | null>(null);
+  const [duration, setDuration] = useState<number | null>(null);
+  const [currentTime, setCurrentTime] = useState<number | null>(null);
   const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
   const [status, setStatus] = useState<SongStatus>("idle");
   const [savedCurrentTime, setSavedCurrentTime] = useState(0);
@@ -69,8 +69,8 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   useEffect(() => {
     if (currentSong) {
-      setDuration(getFormattedTimeFromSeconds(currentSong.duration));
-      setCurrentTime(getFormattedTimeFromSeconds(0));
+      setDuration(currentSong.duration);
+      setCurrentTime(0);
       play();
     }
 
@@ -112,7 +112,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     const currentTime = path && path[0] && path[0].currentTime;
 
     if (currentTime !== undefined) {
-      setCurrentTime(getFormattedTimeFromSeconds(currentTime));
+      setCurrentTime(currentTime);
     }
   }
 

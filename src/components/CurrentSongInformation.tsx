@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { usePlayer } from "../core/hooks/use-player";
+import {
+  getFormattedTimeFromSeconds,
+  usePlayer,
+} from "../core/hooks/use-player";
 import { PauseIcon } from "./icons/Pause";
 import { PlayIcon } from "./icons/Play";
 import { SkipBackIcon } from "./icons/SkipBack";
@@ -24,10 +27,18 @@ function CurrentSongInformation() {
           <SoundInfoTitle>{player.currentSong.artist}</SoundInfoTitle>
         </SoundInfo>
       </SoundInfoRoot>
+      {player.duration && player.currentTime ? (
+        <SongProgress>
+          <SongProgressTime style={{ justifyContent: "flex-end" }}>
+            {getFormattedTimeFromSeconds(player.currentTime)}
+          </SongProgressTime>
+          <ProgressBar max={player.duration} value={player.currentTime} />
+          <SongProgressTime>
+            {getFormattedTimeFromSeconds(player.duration)}
+          </SongProgressTime>
+        </SongProgress>
+      ) : null}
       <PlayerControls>
-        <div>
-          {player.currentTime}-{player.duration}
-        </div>
         <SkipBackIcon />
         <PlayButton>
           {player.status === "playing" ? (
@@ -72,6 +83,7 @@ const SoundInfoRoot = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-shrink: 0;
 `;
 
 const SoundInfo = styled.div`
@@ -89,6 +101,7 @@ const SoundInfoTitle = styled.span`
 
 const PlayerControls = styled.div`
   display: flex;
+  flex-shrink: 0;
   gap: 24px;
   justify-content: center;
   align-items: center;
@@ -106,6 +119,54 @@ const PlayButton = styled.button`
   border-radius: 30px;
   background: white;
   cursor: pointer;
+`;
+
+const SongProgress = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  padding: 0 64px;
+`;
+
+const SongProgressTime = styled.div`
+  width: 90px;
+  display: flex;
+`;
+
+type ProgressBarProps = {
+  max?: number;
+  value?: number;
+};
+
+function ProgressBar(props: ProgressBarProps) {
+  const maxValue = props.max ?? 100;
+  const value = props.value ?? 0;
+  const progress = Math.ceil((value * 100) / maxValue);
+
+  return (
+    <ProgressBarRoot>
+      <ProgressBarFilled style={{ width: `${progress}%` }} />
+    </ProgressBarRoot>
+  );
+}
+
+const ProgressBarRoot = styled.div`
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+  height: 4px;
+  border-radius: 4px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+`;
+
+const ProgressBarFilled = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: white;
 `;
 
 export { CurrentSongInformation };
