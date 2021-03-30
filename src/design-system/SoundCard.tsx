@@ -8,9 +8,6 @@ import {
 
 type SoundCardProps = {
   songData: CurrentSong;
-  coverURL?: string;
-  title?: string;
-  time?: number;
   isPlaying?: boolean;
   onClick?: (params: CurrentSong) => void;
 };
@@ -29,14 +26,15 @@ function SoundCard(props: SoundCardProps) {
               <VolumeIcon />
             </PlayingStatus>
           ) : null}
-          <img src={props.coverURL} alt="Sound Cover" />
+          <img src={props.songData.cover_image} alt="Sound Cover" />
         </ImageContainer>
         <CardTitle isPlaying={props.isPlaying}>
-          {props.title || "Unknown"}
+          <b>{props.songData.name || "Unknown"}</b>
+          <span>{props.songData.artist || "Unknown"}</span>
         </CardTitle>
       </Left>
-      {props.time ? (
-        <Time>{getFormattedTimeFromSeconds(props.time)} min</Time>
+      {props.songData.duration ? (
+        <Time>{getFormattedTimeFromSeconds(props.songData.duration)} min</Time>
       ) : null}
     </Root>
   );
@@ -65,6 +63,8 @@ const Left = styled.div`
 
 const CardTitle = styled.h3<{ isPlaying?: boolean }>(
   ({ theme, isPlaying }) => css`
+    display: flex;
+    flex-direction: column;
     margin: 0;
 
     ${isPlaying &&
