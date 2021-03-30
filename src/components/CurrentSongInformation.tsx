@@ -38,13 +38,15 @@ function CurrentSongInformation() {
       </SongProgress>
       <PlayerControls>
         <SkipBackIcon />
-        <PlayButton>
-          {player.status === "playing" ? (
-            <PauseIcon onClick={player.pause} />
-          ) : (
-            <PlayIcon onClick={player.resume} />
-          )}
-        </PlayButton>
+        {player.status === "playing" ? (
+          <PlayButton onClick={player.pause}>
+            <PauseIcon />
+          </PlayButton>
+        ) : (
+          <PlayButton onClick={player.resume}>
+            <PlayIcon />
+          </PlayButton>
+        )}
         <SkipForwardIcon />
       </PlayerControls>
     </Footer>
