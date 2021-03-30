@@ -41,7 +41,11 @@ const PlayerContext = createContext<ContextType>({
   pause: () => {},
 });
 
-function getFormattedTimeFromSeconds(seconds: number, trim?: boolean) {
+function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
+  if (!seconds) {
+    return "00:00";
+  }
+
   const duration = moment.duration(Math.floor(seconds), "seconds");
   const formattedCurrentTime = duration.format("mm:ss", {
     trim: trim ? undefined : false,

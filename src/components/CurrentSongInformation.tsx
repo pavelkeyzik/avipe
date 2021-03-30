@@ -27,17 +27,15 @@ function CurrentSongInformation() {
           <SoundInfoTitle>{player.currentSong.artist}</SoundInfoTitle>
         </SoundInfo>
       </SoundInfoRoot>
-      {player.duration && player.currentTime ? (
-        <SongProgress>
-          <SongProgressTime style={{ justifyContent: "flex-end" }}>
-            {getFormattedTimeFromSeconds(player.currentTime)}
-          </SongProgressTime>
-          <ProgressBar max={player.duration} value={player.currentTime} />
-          <SongProgressTime>
-            {getFormattedTimeFromSeconds(player.duration)}
-          </SongProgressTime>
-        </SongProgress>
-      ) : null}
+      <SongProgress>
+        <SongProgressTime style={{ justifyContent: "flex-end" }}>
+          {getFormattedTimeFromSeconds(player.currentTime)}
+        </SongProgressTime>
+        <ProgressBar max={player.duration} value={player.currentTime} />
+        <SongProgressTime>
+          {getFormattedTimeFromSeconds(player.duration)}
+        </SongProgressTime>
+      </SongProgress>
       <PlayerControls>
         <SkipBackIcon />
         <PlayButton>
@@ -135,8 +133,8 @@ const SongProgressTime = styled.div`
 `;
 
 type ProgressBarProps = {
-  max?: number;
-  value?: number;
+  max?: number | null;
+  value?: number | null;
 };
 
 function ProgressBar(props: ProgressBarProps) {
