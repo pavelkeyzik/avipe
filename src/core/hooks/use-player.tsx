@@ -23,6 +23,7 @@ type ContextType = {
   setCurrentSong: (param: CurrentSong | null) => void;
   playSelectedSong: (param: CurrentSong | null) => void;
   play: () => void;
+  resume: () => void;
   stop: () => void;
   pause: () => void;
 };
@@ -35,6 +36,7 @@ const PlayerContext = createContext<ContextType>({
   setCurrentSong: () => {},
   playSelectedSong: () => {},
   play: () => {},
+  resume: () => {},
   stop: () => {},
   pause: () => {},
 });
@@ -58,6 +60,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   useEffect(() => {
     audio.addEventListener("timeupdate", handleTimeUpdate);
+
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
@@ -76,15 +79,9 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   function play() {
     if (currentSong) {
-      setStatus("playing");
-      setSavedCurrentTime(0);
       audio.src = api.getSongURL(currentSong.id);
-
-      if (savedCurrentTime && savedCurrentTime !== 0) {
-        audio.currentTime = savedCurrentTime;
-      }
-
       audio.play();
+      setStatus("playing");
     }
   }
 
@@ -99,6 +96,14 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     setStatus("paused");
     setSavedCurrentTime(audio.currentTime);
     audio.pause();
+  }
+
+  function resume() {
+    if (status === "paused" && savedCurrentTime && savedCurrentTime !== 0) {
+      audio.currentTime = savedCurrentTime;
+      audio.play();
+      setStatus("playing");
+    }
   }
 
   function handleTimeUpdate(event: Event) {
@@ -125,6 +130,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         currentTime,
         duration,
         play,
+        resume,
         pause,
         stop,
       }}

@@ -33,7 +33,7 @@ function CurrentSongInformation() {
           {player.status === "playing" ? (
             <PauseIcon onClick={player.pause} />
           ) : (
-            <PlayIcon onClick={player.play} />
+            <PlayIcon onClick={player.resume} />
           )}
         </PlayButton>
         <SkipForwardIcon />
