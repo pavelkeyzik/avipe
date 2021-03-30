@@ -21,27 +21,18 @@ function Dashboard() {
         <p>We prepared a lot of things for you...</p>
       </div>
       <h2>Genres</h2>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: 20,
-        }}
-      >
-        <GenresGrid>
-          <a href="/">Binaural Beats</a>
-          <a href="/">Monaural beats</a>
-          <a href="/">Solfeggio Frequencies</a>
-          <a href="/">World</a>
-          <a href="/">Chant</a>
-          <a href="/">Classical</a>
-          <a href="/">Ambient</a>
-          <a href="/">Isochronic</a>
-          <a href="/">Nature</a>
-          <a href="/">Instruments</a>
-        </GenresGrid>
-      </div>
+      <GenresGrid>
+        <a href="/">Binaural Beats</a>
+        <a href="/">Monaural beats</a>
+        <a href="/">Solfeggio Frequencies</a>
+        <a href="/">World</a>
+        <a href="/">Chant</a>
+        <a href="/">Classical</a>
+        <a href="/">Ambient</a>
+        <a href="/">Isochronic</a>
+        <a href="/">Nature</a>
+        <a href="/">Instruments</a>
+      </GenresGrid>
       <h2>Playlists</h2>
       <CardGrid>
         <Card>
