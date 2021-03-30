@@ -29,6 +29,10 @@ const globalStyles = css`
   p {
     margin: 4px 0;
   }
+
+  a {
+    color: white;
+  }
 `;
 
 function GlobalStyle() {

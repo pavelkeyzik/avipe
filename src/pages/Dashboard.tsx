@@ -20,9 +20,6 @@ function Dashboard() {
       <CardGrid>
         {meditationPlaylists.data?.playlists.items.map((item) => (
           <Card key={item.id}>
-            {/* <Card.ImageContainer>
-              <img src={item.images[0].url} alt="Album cover" />
-            </Card.ImageContainer> */}
             <Card.Content>
               <span>{item.tracks.total} Tracks</span>
               <h2>{item.name}</h2>
