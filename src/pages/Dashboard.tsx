@@ -18,7 +18,7 @@ function Dashboard() {
         <p>How are you feeling today?</p>
       </div>
       <CardGrid>
-        {meditationPlaylists.data?.playlists.items.map((item) => (
+        {meditationPlaylists.data?.playlists.items.map((item: any) => (
           <Card key={item.id}>
             <Card.Content>
               <span>{item.tracks.total} Tracks</span>

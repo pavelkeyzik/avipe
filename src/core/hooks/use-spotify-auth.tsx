@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { spotifyApi } from "../api";
 
 const SpotifyAuthContext = createContext({
   isAuthorized: false,
@@ -13,7 +12,6 @@ function SpotifyAuthProvider(props: React.PropsWithChildren<any>) {
     const storedToken = localStorage.getItem("access_token");
 
     if (storedToken) {
-      spotifyApi.setAccessToken(storedToken);
       setIsAuthorized(true);
     }
   }, []);

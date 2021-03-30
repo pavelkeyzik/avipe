@@ -1,12 +1,11 @@
 import axios from "axios";
-import SpotifyWebApi from "spotify-web-api-js";
-
-const spotifyApi = new SpotifyWebApi();
 
 const spotify = {
   clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID || "",
   clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET || "",
 };
+
+const spotifyAuth = axios.create();
 
 axios.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem("access_token");
@@ -34,7 +33,7 @@ axios.interceptors.response.use(
         localStorage.getItem("refresh_token") || ""
       );
 
-      return axios
+      return spotifyAuth
         .post("https://accounts.spotify.com/api/token", params, {
           headers: {
             Authorization: `Basic ${btoa(
@@ -44,7 +43,7 @@ axios.interceptors.response.use(
           },
         })
         .then((res) => {
-          if (res && res.status === 201) {
+          if (res && res.status === 200) {
             localStorage.setItem("access_token", res.data.access_token);
 
             axios.defaults.headers.common["Authorization"] =
@@ -75,7 +74,7 @@ async function getAccessToken(code: string) {
   params.append("redirect_uri", "https://localhost:3000/spotify-auth-callback");
 
   try {
-    const response = await axios.post(
+    const response = await spotifyAuth.post(
       "https://accounts.spotify.com/api/token",
       params,
       {
@@ -90,7 +89,6 @@ async function getAccessToken(code: string) {
 
     localStorage.setItem("access_token", response.data.access_token);
     localStorage.setItem("refresh_token", response.data.refresh_token);
-    spotifyApi.setAccessToken(response.data.access_token);
 
     return true;
   } catch (err) {
@@ -99,19 +97,25 @@ async function getAccessToken(code: string) {
 }
 
 async function getUserInfo() {
-  return await spotifyApi.getMe();
+  const response = await axios.get("https://api.spotify.com/v1/me");
+
+  return response.data;
 }
 
 async function getNewReleases() {
-  return await spotifyApi.getNewReleases({
-    limit: 4,
-  });
+  const response = await axios.get(
+    "https://api.spotify.com/v1/browse/new-releases?limit=4"
+  );
+
+  return response.data;
 }
 
 async function getPlaylists() {
-  return await spotifyApi.searchPlaylists("meditation", {
-    limit: 4,
-  });
+  const response = await axios.get(
+    "https://api.spotify.com/v1/search?limit=4&q=meditation&type=playlist"
+  );
+
+  return response.data;
 }
 
 async function getSongsList() {
@@ -126,7 +130,6 @@ function getSongURL(id: number) {
   return `https://avipe-server.herokuapp.com/api/v1/songs/${id}`;
 }
 
-export { spotifyApi };
 export const api = {
   login,
   getAccessToken,
