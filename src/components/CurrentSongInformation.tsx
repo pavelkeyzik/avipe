@@ -49,8 +49,8 @@ const Footer = styled.div`
 
 const SoundImageContainer = styled.div(
   ({ theme }) => css`
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
     background: ${theme.avatar.background};
     overflow: hidden;
