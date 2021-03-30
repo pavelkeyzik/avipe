@@ -1,23 +1,24 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const SpotifyAuthContext = createContext({
   isAuthorized: false,
   signIn: () => {},
+  signOut: () => {},
 });
 
 function SpotifyAuthProvider(props: React.PropsWithChildren<any>) {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("access_token");
-
-    if (storedToken) {
-      setIsAuthorized(true);
-    }
-  }, []);
+  const [isAuthorized, setIsAuthorized] = useState(
+    localStorage.getItem("access_token") ? true : false
+  );
 
   function signIn() {
     setIsAuthorized(true);
+  }
+
+  function signOut() {
+    setIsAuthorized(false);
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
   }
 
   return (
@@ -25,6 +26,7 @@ function SpotifyAuthProvider(props: React.PropsWithChildren<any>) {
       value={{
         isAuthorized,
         signIn,
+        signOut,
       }}
     >
       {props.children}

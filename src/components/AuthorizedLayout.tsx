@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
+import { useAuthState } from "../core/hooks/use-spotify-auth";
 import { Avatar } from "../design-system/Avatar";
+import { Button } from "../design-system/Button";
 import { CurrentSongInformation } from "./CurrentSongInformation";
 import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackNoTextIcon } from "./icons/LogoBlack";
@@ -10,6 +12,7 @@ import { SoundIcon } from "./icons/Sound";
 import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
+  const authState = useAuthState();
   const currentUser = useCurrentUser();
 
   return (
@@ -37,6 +40,7 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
             <Avatar>
               <img src={currentUser.data.images?.[0].url} alt="User Logo" />
             </Avatar>
+            <Button onClick={authState.signOut}>Sign Out</Button>
           </React.Fragment>
         ) : null}
       </TopNavigaiton>

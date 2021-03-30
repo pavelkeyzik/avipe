@@ -48,8 +48,8 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   useEffect(() => {
     audio.addEventListener("timeupdate", handleTimeUpdate);
-
     return () => {
+      audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, [audio]);

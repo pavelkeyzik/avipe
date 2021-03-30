@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
@@ -23,15 +29,18 @@ function Application() {
 
   if (isAuthorized) {
     return (
-      <AuthorizedLayout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="sound/*" element={<Outlet />}>
-            <Route path="/" element={<SoundList />} />
-          </Route>
-          <Route path="profile/*" element={<div>Profile</div>} />
-        </Routes>
-      </AuthorizedLayout>
+      <PlayerProvider>
+        <AuthorizedLayout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="sound/*" element={<Outlet />}>
+              <Route path="/" element={<SoundList />} />
+            </Route>
+            <Route path="profile/*" element={<div>Profile</div>} />
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+        </AuthorizedLayout>
+      </PlayerProvider>
     );
   }
 
@@ -43,6 +52,7 @@ function Application() {
           path="/spotify-auth-callback"
           element={<SpotifyAuthCallback />}
         />
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
@@ -51,16 +61,14 @@ function Application() {
 ReactDOM.render(
   <React.StrictMode>
     <SpotifyAuthProvider>
-      <PlayerProvider>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <BrowserRouter>
-              <Application />
-            </BrowserRouter>
-          </ThemeProvider>
-        </QueryClientProvider>
-      </PlayerProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <BrowserRouter>
+            <Application />
+          </BrowserRouter>
+        </ThemeProvider>
+      </QueryClientProvider>
     </SpotifyAuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
