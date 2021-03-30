@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { usePlayer } from "../core/hooks/use-player";
+import { PauseIcon } from "./icons/Pause";
 import { PlayIcon } from "./icons/Play";
 import { SkipBackIcon } from "./icons/SkipBack";
 import { SkipForwardIcon } from "./icons/SkipForward";
@@ -29,7 +30,11 @@ function CurrentSongInformation() {
         </div>
         <SkipBackIcon />
         <PlayButton>
-          <PlayIcon />
+          {player.status === "playing" ? (
+            <PauseIcon onClick={player.pause} />
+          ) : (
+            <PlayIcon onClick={player.play} />
+          )}
         </PlayButton>
         <SkipForwardIcon />
       </PlayerControls>

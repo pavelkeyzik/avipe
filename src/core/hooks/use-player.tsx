@@ -13,22 +13,30 @@ type CurrentSong = {
   cover_image: string;
 };
 
+type SongStatus = "idle" | "playing" | "paused" | "stopped";
+
 type ContextType = {
   currentSong: CurrentSong | null;
   currentTime: string | null;
   duration: string | null;
+  status: SongStatus;
   setCurrentSong: (param: CurrentSong | null) => void;
-  play: (id: CurrentSong) => void;
+  playSelectedSong: (param: CurrentSong | null) => void;
+  play: () => void;
   stop: () => void;
+  pause: () => void;
 };
 
 const PlayerContext = createContext<ContextType>({
   currentSong: null,
   currentTime: null,
   duration: null,
+  status: "idle",
   setCurrentSong: () => {},
+  playSelectedSong: () => {},
   play: () => {},
   stop: () => {},
+  pause: () => {},
 });
 
 function getFormattedTimeFromSeconds(seconds: number, trim?: boolean) {
@@ -45,6 +53,8 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   const [duration, setDuration] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string | null>(null);
   const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
+  const [status, setStatus] = useState<SongStatus>("idle");
+  const [savedCurrentTime, setSavedCurrentTime] = useState(0);
 
   useEffect(() => {
     audio.addEventListener("timeupdate", handleTimeUpdate);
@@ -58,18 +68,37 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     if (currentSong) {
       setDuration(getFormattedTimeFromSeconds(currentSong.duration));
       setCurrentTime(getFormattedTimeFromSeconds(0));
+      play();
     }
+
+    // eslint-disable-next-line
   }, [currentSong]);
 
-  function play(songToPlay: CurrentSong) {
-    setCurrentSong(songToPlay);
-    audio.src = api.getSongURL(songToPlay.id);
-    audio.play();
+  function play() {
+    if (currentSong) {
+      setStatus("playing");
+      setSavedCurrentTime(0);
+      audio.src = api.getSongURL(currentSong.id);
+
+      if (savedCurrentTime && savedCurrentTime !== 0) {
+        audio.currentTime = savedCurrentTime;
+      }
+
+      audio.play();
+    }
   }
 
   function stop() {
     setCurrentSong(null);
+    setStatus("stopped");
+    setSavedCurrentTime(0);
     audio.src = "";
+  }
+
+  function pause() {
+    setStatus("paused");
+    setSavedCurrentTime(audio.currentTime);
+    audio.pause();
   }
 
   function handleTimeUpdate(event: Event) {
@@ -82,14 +111,21 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     }
   }
 
+  function playSelectedSong(selectedSong: CurrentSong | null) {
+    setCurrentSong(selectedSong);
+  }
+
   return (
     <PlayerContext.Provider
       value={{
+        status,
         currentSong,
         setCurrentSong,
+        playSelectedSong,
         currentTime,
         duration,
         play,
+        pause,
         stop,
       }}
     >

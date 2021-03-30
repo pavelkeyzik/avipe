@@ -27,7 +27,7 @@ function SoundList() {
             coverURL={song.cover_image}
             title={song.name}
             time={song.duration}
-            onClick={player.play}
+            onClick={player.playSelectedSong}
             isPlaying={
               player.currentSong ? player.currentSong.id === song.id : false
             }

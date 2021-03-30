@@ -1,4 +1,4 @@
-function PlayIcon(props: React.SVGProps<SVGSVGElement>) {
+function PauseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
@@ -11,9 +11,10 @@ function PlayIcon(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
     </svg>
   );
 }
 
-export { PlayIcon };
+export { PauseIcon };
