@@ -36,7 +36,6 @@ function Application() {
             <Route path="sound/*" element={<Outlet />}>
               <Route path="/" element={<SoundList />} />
             </Route>
-            <Route path="profile/*" element={<div>Profile</div>} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </AuthorizedLayout>

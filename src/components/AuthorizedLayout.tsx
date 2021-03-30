@@ -9,7 +9,6 @@ import { CurrentSongInformation } from "./CurrentSongInformation";
 import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackNoTextIcon } from "./icons/LogoBlack";
 import { SoundIcon } from "./icons/Sound";
-import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
   const authState = useAuthState();
@@ -27,9 +26,6 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
           </NavLink>
           <NavLink to="/sound" activeClassName="active">
             <SoundIcon />
-          </NavLink>
-          <NavLink to="/profile" activeClassName="active">
-            <UserIcon />
           </NavLink>
         </Navigation>
       </LeftNavigation>
