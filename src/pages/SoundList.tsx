@@ -24,9 +24,9 @@ function SoundList() {
           <SoundCard
             key={song.id}
             songData={song}
-            coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
+            coverURL={song.cover_image}
             title={song.name}
-            time={30}
+            time={song.duration}
             onClick={player.play}
             isPlaying={
               player.currentSong ? player.currentSong.id === song.id : false

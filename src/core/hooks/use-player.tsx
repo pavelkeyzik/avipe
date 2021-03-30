@@ -9,11 +9,14 @@ type CurrentSong = {
   id: number;
   name: string;
   artist: string;
+  duration: number;
+  cover_image: string;
 };
 
 type ContextType = {
   currentSong: CurrentSong | null;
   currentTime: string | null;
+  duration: string | null;
   setCurrentSong: (param: CurrentSong | null) => void;
   play: (id: CurrentSong) => void;
   stop: () => void;
@@ -22,13 +25,24 @@ type ContextType = {
 const PlayerContext = createContext<ContextType>({
   currentSong: null,
   currentTime: null,
+  duration: null,
   setCurrentSong: () => {},
   play: () => {},
   stop: () => {},
 });
 
+function getFormattedTimeFromSeconds(seconds: number, trim?: boolean) {
+  const duration = moment.duration(Math.floor(seconds), "seconds");
+  const formattedCurrentTime = duration.format("mm:ss", {
+    trim: trim ? undefined : false,
+  });
+
+  return formattedCurrentTime;
+}
+
 function PlayerProvider(props: React.PropsWithChildren<any>) {
   const audio = React.useMemo(() => new Audio(), []);
+  const [duration, setDuration] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string | null>(null);
   const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
 
@@ -39,6 +53,13 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, [audio]);
+
+  useEffect(() => {
+    if (currentSong) {
+      setDuration(getFormattedTimeFromSeconds(currentSong.duration));
+      setCurrentTime(getFormattedTimeFromSeconds(0));
+    }
+  }, [currentSong]);
 
   function play(songToPlay: CurrentSong) {
     setCurrentSong(songToPlay);
@@ -57,12 +78,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     const currentTime = path && path[0] && path[0].currentTime;
 
     if (currentTime !== undefined) {
-      const duration = moment.duration(Math.floor(currentTime), "seconds");
-      const formattedCurrentTime = duration.format("mm:ss", {
-        trim: false,
-      });
-
-      setCurrentTime(formattedCurrentTime);
+      setCurrentTime(getFormattedTimeFromSeconds(currentTime));
     }
   }
 
@@ -72,6 +88,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         currentSong,
         setCurrentSong,
         currentTime,
+        duration,
         play,
         stop,
       }}
@@ -86,4 +103,4 @@ function usePlayer() {
 }
 
 export type { CurrentSong };
-export { usePlayer, PlayerProvider };
+export { usePlayer, PlayerProvider, getFormattedTimeFromSeconds };

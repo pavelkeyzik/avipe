@@ -127,7 +127,7 @@ async function getSongsList() {
 }
 
 function getSongURL(id: number) {
-  return `https://avipe-server.herokuapp.com/api/v1/songs/${id}`;
+  return `https://avipe-server.herokuapp.com/api/v1/songs/${id}/track`;
 }
 
 export const api = {

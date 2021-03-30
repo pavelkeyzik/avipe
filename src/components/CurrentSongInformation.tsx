@@ -16,10 +16,7 @@ function CurrentSongInformation() {
     <Footer>
       <SoundInfoRoot>
         <SoundImageContainer>
-          <img
-            src="https://source.unsplash.com/user/pavelkeyzik/320x320"
-            alt="Sound Cover"
-          />
+          <img src={player.currentSong.cover_image} alt="Sound Cover" />
         </SoundImageContainer>
         <SoundInfo>
           <SoundInfoSongName>{player.currentSong.name}</SoundInfoSongName>
@@ -27,7 +24,9 @@ function CurrentSongInformation() {
         </SoundInfo>
       </SoundInfoRoot>
       <PlayerControls>
-        <div>{player.currentTime}</div>
+        <div>
+          {player.currentTime}-{player.duration}
+        </div>
         <SkipBackIcon />
         <PlayButton>
           <PlayIcon />

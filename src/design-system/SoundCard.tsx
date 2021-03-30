@@ -1,7 +1,10 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { VolumeIcon } from "../components/icons/Volume";
-import { CurrentSong } from "../core/hooks/use-player";
+import {
+  CurrentSong,
+  getFormattedTimeFromSeconds,
+} from "../core/hooks/use-player";
 
 type SoundCardProps = {
   songData: CurrentSong;
@@ -32,7 +35,9 @@ function SoundCard(props: SoundCardProps) {
           {props.title || "Unknown"}
         </CardTitle>
       </Left>
-      {props.time ? <Time>{props.time} min</Time> : null}
+      {props.time ? (
+        <Time>{getFormattedTimeFromSeconds(props.time)} min</Time>
+      ) : null}
     </Root>
   );
 }
