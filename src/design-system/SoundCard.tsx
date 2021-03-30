@@ -1,21 +1,35 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { VolumeIcon } from "../components/icons/Volume";
 
 type SoundCardProps = {
+  id: number;
   coverURL?: string;
   title?: string;
   time?: number;
-  onClick?: () => void;
+  isPlaying?: boolean;
+  onClick?: (id: number) => void;
 };
 
 function SoundCard(props: SoundCardProps) {
+  function handleClick() {
+    props.onClick && props.onClick(props.id);
+  }
+
   return (
-    <Root onClick={props.onClick}>
+    <Root onClick={handleClick}>
       <Left>
         <ImageContainer>
+          {props.isPlaying ? (
+            <PlayingStatus>
+              <VolumeIcon />
+            </PlayingStatus>
+          ) : null}
           <img src={props.coverURL} alt="Sound Cover" />
         </ImageContainer>
-        <CardTitle>{props.title || "Unknown"}</CardTitle>
+        <CardTitle isPlaying={props.isPlaying}>
+          {props.title || "Unknown"}
+        </CardTitle>
       </Left>
       {props.time ? <Time>{props.time} min</Time> : null}
     </Root>
@@ -43,9 +57,16 @@ const Left = styled.div`
   gap: 20px;
 `;
 
-const CardTitle = styled.h3`
-  margin: 0;
-`;
+const CardTitle = styled.h3<{ isPlaying?: boolean }>(
+  ({ theme, isPlaying }) => css`
+    margin: 0;
+
+    ${isPlaying &&
+    css`
+      color: ${theme.soundCard.textForegroundHover};
+    `}
+  `
+);
 
 const ImageContainer = styled.div(
   ({ theme }) => css`
@@ -54,6 +75,7 @@ const ImageContainer = styled.div(
     border-radius: 8px;
     background: ${theme.soundCard.imageBackground};
     overflow: hidden;
+    position: relative;
 
     img {
       object-fit: cover;
@@ -68,5 +90,18 @@ const Time = styled.span(
     color: ${theme.soundCard.timeForeground};
   `
 );
+
+const PlayingStatus = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+`;
 
 export { SoundCard };

@@ -1,8 +1,17 @@
 import styled from "@emotion/styled";
+import { usePlayer } from "../core/hooks/use-player";
+import { useSongsList } from "../core/hooks/use-songs";
 import { Card } from "../design-system/Card";
 import { SoundCard } from "../design-system/SoundCard";
 
 function SoundList() {
+  const player = usePlayer();
+  const songsList = useSongsList();
+
+  if (songsList.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <RootGrid>
       <Card>
@@ -10,32 +19,19 @@ function SoundList() {
         <p>Techniques, Benefits, and a Beginner’s How-To</p>
         <Card.PlayButton />
       </Card>
+      <audio ref={player.audioRef} hidden />
       <RootListGrid>
-        <SoundCard
-          coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
-          title="Painting Forest"
-          time={30}
-        />
-        <SoundCard
-          coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
-          title="Mountaineers"
-          time={15}
-        />
-        <SoundCard
-          coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
-          title="Three Days Grace"
-          time={15}
-        />
-        <SoundCard
-          coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
-          title="Lovely Deserts"
-          time={25}
-        />
-        <SoundCard
-          coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
-          title="The Hill Sides"
-          time={40}
-        />
+        {songsList.data.map((song: any) => (
+          <SoundCard
+            key={song.id}
+            id={song.id}
+            coverURL="https://source.unsplash.com/user/pavelkeyzik/80x80"
+            title={song.name}
+            time={30}
+            onClick={player.play}
+            isPlaying={player.currentSongId === song.id}
+          />
+        ))}
       </RootListGrid>
     </RootGrid>
   );

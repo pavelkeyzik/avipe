@@ -114,6 +114,18 @@ async function getPlaylists() {
   });
 }
 
+async function getSongsList() {
+  const response = await axios.get(
+    "https://avipe-server.herokuapp.com/api/v1/songs"
+  );
+
+  return response.data;
+}
+
+function getSongURL(id: number) {
+  return `https://avipe-server.herokuapp.com/api/v1/songs/${id}`;
+}
+
 export { spotifyApi };
 export const api = {
   login,
@@ -121,4 +133,6 @@ export const api = {
   getUserInfo,
   getNewReleases,
   getPlaylists,
+  getSongsList,
+  getSongURL,
 };

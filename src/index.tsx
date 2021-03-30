@@ -14,6 +14,7 @@ import {
 } from "./core/hooks/use-spotify-auth";
 import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { PlayerProvider } from "./core/hooks/use-player";
 
 const queryClient = new QueryClient();
 
@@ -50,14 +51,16 @@ function Application() {
 ReactDOM.render(
   <React.StrictMode>
     <SpotifyAuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <BrowserRouter>
-            <Application />
-          </BrowserRouter>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <PlayerProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <BrowserRouter>
+              <Application />
+            </BrowserRouter>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </PlayerProvider>
     </SpotifyAuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
