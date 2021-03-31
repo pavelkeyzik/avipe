@@ -6,6 +6,7 @@ const spotify = {
 };
 
 const spotifyAuth = axios.create();
+const avipeServer = "https://avipe-server.herokuapp.com/api/v1";
 
 axios.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem("access_token");
@@ -111,23 +112,19 @@ async function getNewReleases() {
 }
 
 async function getPlaylists() {
-  const response = await axios.get(
-    "https://api.spotify.com/v1/search?limit=4&q=meditation&type=playlist"
-  );
+  const response = await axios.get(`${avipeServer}/playlists`);
 
   return response.data;
 }
 
 async function getSongsList() {
-  const response = await axios.get(
-    "https://avipe-server.herokuapp.com/api/v1/songs"
-  );
+  const response = await axios.get(`${avipeServer}/songs`);
 
   return response.data;
 }
 
 function getSongURL(id: number) {
-  return `https://avipe-server.herokuapp.com/api/v1/songs/${id}/track`;
+  return `${avipeServer}/songs/${id}/track`;
 }
 
 export const api = {

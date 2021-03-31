@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { usePlayer } from "../core/hooks/use-player";
-import { useSongsList } from "../core/hooks/use-songs";
+import { usePlaylists, useSongsList } from "../core/hooks/use-songs";
 import { Card } from "../design-system/Card";
 import { SoundCard } from "../design-system/SoundCard";
 
@@ -9,8 +9,9 @@ function Dashboard() {
   const player = usePlayer();
   const songsList = useSongsList();
   const currentUser = useCurrentUser();
+  const playlists = usePlaylists();
 
-  if (songsList.isLoading) {
+  if (songsList.isLoading || playlists.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -35,41 +36,16 @@ function Dashboard() {
       </GenresGrid>
       <h2>Playlists</h2>
       <CardGrid>
-        <Card>
-          <Card.Content>
-            <span>2 Tracks</span>
-            <h2>If you're sad</h2>
-            <p>We'll try to help you be more happy about this life</p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
-        <Card>
-          <Card.Content>
-            <span>14 Tracks</span>
-            <h2>If you're mad</h2>
-            <p>
-              With this playlist you'll get enough energy to calm down an be
-              more quiet
-            </p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
-        <Card>
-          <Card.Content>
-            <span>7 Tracks</span>
-            <h2>If you didn't get enough sleep</h2>
-            <p>Helps you wake up and get things done</p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
-        <Card>
-          <Card.Content>
-            <span>5 Tracks</span>
-            <h2>Quiet launch</h2>
-            <p>Just eat with feelings of liberty</p>
-          </Card.Content>
-          <Card.PlayButton />
-        </Card>
+        {playlists.data.map((playlist: any) => (
+          <Card key={playlist.id}>
+            <Card.Content>
+              <span>2 Tracks (created by {playlist.author})</span>
+              <h2>{playlist.name}</h2>
+              <p>{playlist.description}</p>
+            </Card.Content>
+            <Card.PlayButton />
+          </Card>
+        ))}
       </CardGrid>
 
       <h2>Recent Sounds</h2>

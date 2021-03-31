@@ -5,4 +5,8 @@ function useSongsList() {
   return useQuery("songs-list", api.getSongsList);
 }
 
-export { useSongsList };
+function usePlaylists() {
+  return useQuery("playlists-list", api.getPlaylists);
+}
+
+export { useSongsList, usePlaylists };
