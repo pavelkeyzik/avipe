@@ -79,6 +79,14 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   }, [audio]);
 
   useEffect(() => {
+    audio.addEventListener("ended", handleSongEnded);
+
+    return () => {
+      audio.removeEventListener("ended", handleSongEnded);
+    };
+  }, [audio, handleSongEnded]);
+
+  useEffect(() => {
     if (currentSong) {
       setDuration(currentSong.duration);
       setCurrentTime(0);
@@ -125,6 +133,11 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     if (currentTime !== undefined) {
       setCurrentTime(currentTime);
     }
+  }
+
+  // eslint-disable-next-line
+  function handleSongEnded(event: Event) {
+    next();
   }
 
   function playSelectedSong(
