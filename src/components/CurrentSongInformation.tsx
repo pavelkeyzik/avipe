@@ -37,7 +37,9 @@ function CurrentSongInformation() {
         </SongProgressTime>
       </SongProgress>
       <PlayerControls>
-        <SkipBackIcon />
+        <IconButton onClick={player.prev}>
+          <SkipBackIcon />
+        </IconButton>
         {player.status === "playing" ? (
           <PlayButton onClick={player.pause}>
             <PauseIcon />
@@ -47,7 +49,9 @@ function CurrentSongInformation() {
             <PlayIcon />
           </PlayButton>
         )}
-        <SkipForwardIcon />
+        <IconButton onClick={player.next}>
+          <SkipForwardIcon />
+        </IconButton>
       </PlayerControls>
     </Footer>
   );
@@ -119,6 +123,17 @@ const PlayButton = styled.button`
   border-radius: 30px;
   background: white;
   cursor: pointer;
+`;
+
+const IconButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
 `;
 
 const SongProgress = styled.div`

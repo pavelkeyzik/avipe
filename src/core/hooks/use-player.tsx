@@ -20,12 +20,15 @@ type ContextType = {
   currentTime: number | null;
   duration: number | null;
   status: SongStatus;
+  songsQueue: CurrentSong[];
   setCurrentSong: (param: CurrentSong | null) => void;
-  playSelectedSong: (param: CurrentSong | null) => void;
+  playSelectedSong: (param: CurrentSong | null, queue: CurrentSong[]) => void;
   play: () => void;
   resume: () => void;
   stop: () => void;
   pause: () => void;
+  next: () => void;
+  prev: () => void;
 };
 
 const PlayerContext = createContext<ContextType>({
@@ -33,12 +36,15 @@ const PlayerContext = createContext<ContextType>({
   currentTime: null,
   duration: null,
   status: "idle",
+  songsQueue: [],
   setCurrentSong: () => {},
   playSelectedSong: () => {},
   play: () => {},
   resume: () => {},
   stop: () => {},
   pause: () => {},
+  next: () => {},
+  prev: () => {},
 });
 
 function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
@@ -61,6 +67,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
   const [status, setStatus] = useState<SongStatus>("idle");
   const [savedCurrentTime, setSavedCurrentTime] = useState(0);
+  const [songsQueue, setSongsQueue] = useState<CurrentSong[]>([]);
 
   useEffect(() => {
     audio.addEventListener("timeupdate", handleTimeUpdate);
@@ -120,8 +127,49 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     }
   }
 
-  function playSelectedSong(selectedSong: CurrentSong | null) {
+  function playSelectedSong(
+    selectedSong: CurrentSong | null,
+    queue: CurrentSong[]
+  ) {
+    if (!selectedSong) {
+      return setCurrentSong(null);
+    }
+
+    setSongsQueue(queue);
     setCurrentSong(selectedSong);
+  }
+
+  function next() {
+    if (!currentSong) {
+      return;
+    }
+
+    const currentSongId = currentSong.id;
+    const foundedSongIndex = songsQueue.findIndex(
+      (i) => i.id === currentSongId
+    );
+
+    if (foundedSongIndex >= 0 && foundedSongIndex + 2 <= songsQueue.length) {
+      setCurrentSong(songsQueue[foundedSongIndex + 1]);
+    }
+  }
+
+  function prev() {
+    if (!currentSong) {
+      return;
+    }
+
+    const currentSongId = currentSong.id;
+    const foundedSongIndex = songsQueue.findIndex(
+      (i) => i.id === currentSongId
+    );
+
+    if (
+      foundedSongIndex - 1 >= 0 &&
+      foundedSongIndex + 1 <= songsQueue.length
+    ) {
+      setCurrentSong(songsQueue[foundedSongIndex - 1]);
+    }
   }
 
   return (
@@ -137,6 +185,9 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         resume,
         pause,
         stop,
+        songsQueue,
+        next,
+        prev,
       }}
     >
       {props.children}
