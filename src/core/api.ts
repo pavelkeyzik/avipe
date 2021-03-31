@@ -7,6 +7,7 @@ const spotify = {
 
 const spotifyAuth = axios.create();
 const avipeServer = "https://avipe-server.herokuapp.com/api/v1";
+// const avipeServer = "http://localhost:3030/api/v1";
 
 axios.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem("access_token");
@@ -117,6 +118,12 @@ async function getPlaylists() {
   return response.data;
 }
 
+async function getPlaylist(id: number) {
+  const response = await axios.get(`${avipeServer}/playlists/${id}`);
+
+  return response.data;
+}
+
 async function getSongsList() {
   const response = await axios.get(`${avipeServer}/songs`);
 
@@ -133,6 +140,7 @@ export const api = {
   getUserInfo,
   getNewReleases,
   getPlaylists,
+  getPlaylist,
   getSongsList,
   getSongURL,
 };

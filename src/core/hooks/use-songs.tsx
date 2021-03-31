@@ -9,4 +9,8 @@ function usePlaylists() {
   return useQuery("playlists-list", api.getPlaylists);
 }
 
-export { useSongsList, usePlaylists };
+function usePlaylist(id: number) {
+  return useQuery(["playlist", id], () => api.getPlaylist(id));
+}
+
+export { useSongsList, usePlaylists, usePlaylist };

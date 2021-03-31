@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { usePlayer } from "../core/hooks/use-player";
 import { usePlaylists, useSongsList } from "../core/hooks/use-songs";
@@ -6,6 +7,7 @@ import { Card } from "../design-system/Card";
 import { SoundCard } from "../design-system/SoundCard";
 
 function Dashboard() {
+  const navigate = useNavigate();
   const player = usePlayer();
   const songsList = useSongsList();
   const currentUser = useCurrentUser();
@@ -36,16 +38,21 @@ function Dashboard() {
       </GenresGrid>
       <h2>Playlists</h2>
       <CardGrid>
-        {playlists.data.map((playlist: any) => (
-          <Card key={playlist.id}>
-            <Card.Content>
-              <span>2 Tracks (created by {playlist.author})</span>
-              <h2>{playlist.name}</h2>
-              <p>{playlist.description}</p>
-            </Card.Content>
-            <Card.PlayButton />
-          </Card>
-        ))}
+        {playlists.data.map((playlist: any) => {
+          function openPlaylist() {
+            navigate(`playlist/${playlist.id}`);
+          }
+
+          return (
+            <Card key={playlist.id}>
+              <Card.Content>
+                <h2>{playlist.name}</h2>
+                <p>{playlist.description}</p>
+              </Card.Content>
+              <Card.PlayButton onClick={openPlaylist} />
+            </Card>
+          );
+        })}
       </CardGrid>
 
       <h2>Recent Sounds</h2>
