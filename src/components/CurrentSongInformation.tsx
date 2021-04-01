@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import {
   getFormattedTimeFromSeconds,
   usePlayer,
@@ -11,13 +12,17 @@ import { SkipForwardIcon } from "./icons/SkipForward";
 
 function CurrentSongInformation() {
   const player = usePlayer();
+  const variants = {
+    hidden: { opacity: 0, bottom: "-100px" },
+    visible: { opacity: 1, bottom: 0 },
+  };
 
   if (!player.currentSong) {
     return null;
   }
 
   return (
-    <Footer>
+    <Footer initial="hidden" animate="visible" variants={variants}>
       <SoundInfoRoot>
         <SoundImageContainer>
           <img src={player.currentSong.cover_image} alt="Sound Cover" />
@@ -57,9 +62,12 @@ function CurrentSongInformation() {
   );
 }
 
-const Footer = styled.div`
-  grid-row: 3 / 4;
-  grid-column: 1 / 3;
+const Footer = styled(motion.div)`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
   background: #2d2d35;
   display: flex;
   align-items: center;

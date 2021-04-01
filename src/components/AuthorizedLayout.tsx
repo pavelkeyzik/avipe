@@ -57,7 +57,7 @@ const LogoContainer = styled.div`
 const LayoutGrid = styled.div`
   display: grid;
   grid-template-columns: 120px 1fr;
-  grid-template-rows: 80px 1fr 100px;
+  grid-template-rows: 80px 1fr;
   height: 100vh;
 `;
 
@@ -81,6 +81,7 @@ const Main = styled.div`
   grid-row: 2 / 3;
   grid-column: 2 / 3;
   overflow-y: scroll;
+  padding-bottom: 140px;
 
   &::-webkit-scrollbar {
     display: none;
