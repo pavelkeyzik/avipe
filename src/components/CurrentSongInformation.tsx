@@ -62,19 +62,21 @@ function CurrentSongInformation() {
   );
 }
 
-const Footer = styled(motion.div)`
-  position: fixed;
-  z-index: 16;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: #2d2d35;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px 0 20px;
-`;
+const Footer = styled(motion.div)(
+  ({ theme }) => css`
+    position: fixed;
+    z-index: ${theme.layerManager.player};
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #2d2d35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px 0 20px;
+  `
+);
 
 const SoundImageContainer = styled.div(
   ({ theme }) => css`

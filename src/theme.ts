@@ -28,6 +28,11 @@ const theme = {
     borderFocus: "#ffffff",
     foreground: "#ffffff",
   },
+  layerManager: {
+    player: 10,
+    leftNavigation: 9,
+    topNavigation: 8,
+  },
 };
 
 type Theme = typeof theme;

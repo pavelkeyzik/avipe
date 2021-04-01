@@ -67,35 +67,37 @@ const LayoutGrid = styled.div`
 const LeftNavigation = styled.div(
   ({ theme }) => css`
     position: relative;
-    z-index: 15;
+    z-index: ${theme.layerManager.leftNavigation};
     grid-row: 1 / 3;
     grid-column: 1 / 2;
     background: ${theme.body.background};
   `
 );
 
-const TopNavigaiton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
-  padding: 16px 48px;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  width: 100%;
-
-  ::after {
-    content: "";
-    position: absolute;
+const TopNavigaiton = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 16px 48px;
+    position: fixed;
+    z-index: ${theme.layerManager.topNavigation};
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
-    height: 160px;
-    z-index: -1;
-  }
-`;
+
+    ::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      z-index: -1;
+    }
+  `
+);
 
 const CurrentUserInfo = styled.div`
   display: flex;
