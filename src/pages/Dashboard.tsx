@@ -28,7 +28,7 @@ function Dashboard() {
         <h1>Welcome back, {currentUser.data?.display_name ?? "..."}!</h1>
         <p>We prepared a lot of things for you...</p>
       </div>
-      <h2>Genres</h2>
+      {/* <h2>Genres</h2>
       <GenresGrid>
         <a href="/">Binaural Beats</a>
         <a href="/">Monaural beats</a>
@@ -40,7 +40,7 @@ function Dashboard() {
         <a href="/">Isochronic</a>
         <a href="/">Nature</a>
         <a href="/">Instruments</a>
-      </GenresGrid>
+      </GenresGrid> */}
       <h2>Playlists</h2>
       <CardGrid>
         {playlists.data.map((playlist: any) => {
@@ -80,11 +80,11 @@ const CardGrid = styled.div`
   grid-gap: 20px;
 `;
 
-const GenresGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
+// const GenresGrid = styled.div`
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
+// `;
 
 const MoreSoundsContainer = styled.div`
   display: flex;
