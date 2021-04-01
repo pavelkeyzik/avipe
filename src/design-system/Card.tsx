@@ -1,14 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import React from "react";
 import { PlayCircleIcon } from "../components/icons/PlayCircle";
 import { Button } from "../design-system/Button";
 
 function Card(props: React.PropsWithChildren<any>) {
-  return <CardRoot>{props.children}</CardRoot>;
+  return <CardRoot {...props} />;
 }
 
-const CardRoot = styled.div(
+const CardRoot = styled(motion.div)(
   ({ theme }) => css`
     display: flex;
     flex-direction: column;
@@ -43,7 +44,25 @@ const PlayButtonRoot = styled(Button)`
   margin-top: 8px;
 `;
 
+function CardFallback() {
+  return (
+    <motion.div
+      animate={{ opacity: [0.5, 1, 0.5] }}
+      transition={{ loop: Infinity, duration: 1 }}
+    >
+      <CardRootFallback />
+    </motion.div>
+  );
+}
+
+const CardRootFallback = styled.div`
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  height: 200px;
+`;
+
 Card.PlayButton = PlayButton;
 Card.Content = CardContent;
+Card.Fallback = CardFallback;
 
 export { Card };

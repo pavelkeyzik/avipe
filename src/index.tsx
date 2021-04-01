@@ -7,7 +7,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-import { Dashboard } from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
 import { AuthorizedLayout } from "./components/AuthorizedLayout";
