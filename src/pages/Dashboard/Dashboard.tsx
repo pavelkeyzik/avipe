@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { MainContentLayout } from "../../components/MainContentLayout";
 import { useCurrentUser } from "../../core/hooks/use-current-user";
 import { Playlists } from "./Playlists";
 import { RecentSounds } from "./RecentSounds";
@@ -31,7 +32,7 @@ function Dashboard() {
   );
 }
 
-const Root = styled.div`
+const Root = styled(MainContentLayout)`
   display: grid;
   grid-gap: 20px;
 `;

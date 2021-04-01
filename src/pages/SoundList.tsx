@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { MainContentLayout } from "../components/MainContentLayout";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 import { useSongsList } from "../core/hooks/use-songs";
 
@@ -22,7 +23,7 @@ function SoundList() {
   );
 }
 
-const RootGrid = styled.div`
+const RootGrid = styled(MainContentLayout)`
   display: grid;
   grid-gap: 40px;
 `;

@@ -107,12 +107,9 @@ const CurrentUserInfo = styled.div`
 `;
 
 const Main = styled.div`
-  padding: 0 48px 40px;
   grid-row: 1 / 3;
   grid-column: 2 / 3;
   overflow-y: scroll;
-  padding-top: 100px;
-  padding-bottom: 140px;
 
   &::-webkit-scrollbar {
     display: none;
