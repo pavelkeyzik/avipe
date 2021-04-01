@@ -63,7 +63,7 @@ async function login() {
   const link = `https://accounts.spotify.com/authorize?response_type=code&client_id=${encodeURIComponent(
     spotify.clientId
   )}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(
-    "https://localhost:3000/spotify-auth-callback"
+    `${window.origin}/spotify-auth-callback`
   )}`;
 
   window.location.href = link;
@@ -73,7 +73,7 @@ async function getAccessToken(code: string) {
   const params = new URLSearchParams();
   params.append("grant_type", "authorization_code");
   params.append("code", code);
-  params.append("redirect_uri", "https://localhost:3000/spotify-auth-callback");
+  params.append("redirect_uri", `${window.origin}/spotify-auth-callback`);
 
   try {
     const response = await spotifyAuth.post(
