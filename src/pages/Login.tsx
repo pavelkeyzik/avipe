@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { SpotifyIcon } from "../components/icons/Spotify";
 import { api } from "../core/api";
@@ -40,6 +40,20 @@ const Root = styled.div`
   overflow: hidden;
 `;
 
+const backgroundImageScaleAnimation = keyframes`
+  from {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+`;
+
 const BackgroundImage = styled.img`
   position: absolute;
   z-index: -1;
@@ -47,6 +61,7 @@ const BackgroundImage = styled.img`
   width: 100%;
   height: 100%;
   filter: brightness(0.4);
+  animation: ${backgroundImageScaleAnimation} 24s ease-in-out infinite;
 `;
 
 const BackgroundImageInfo = styled.div`
