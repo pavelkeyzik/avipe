@@ -3,13 +3,20 @@ import { useNavigate } from "react-router";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { usePlaylists, useSongsList } from "../core/hooks/use-songs";
+import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const songsList = useSongsList();
+  const songsList = useSongsList({
+    limit: 5,
+  });
   const currentUser = useCurrentUser();
   const playlists = usePlaylists();
+
+  function openRouteAllSounds() {
+    navigate(`sound`);
+  }
 
   if (songsList.isLoading || playlists.isLoading) {
     return <div>Loading...</div>;
@@ -55,6 +62,9 @@ function Dashboard() {
 
       <h2>Recent Sounds</h2>
       <SoundPlaylist songs={songsList.data} />
+      <MoreSoundsContainer>
+        <Button onClick={openRouteAllSounds}>Show More Sounds</Button>
+      </MoreSoundsContainer>
     </Root>
   );
 }
@@ -74,6 +84,11 @@ const GenresGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+`;
+
+const MoreSoundsContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export { Dashboard };

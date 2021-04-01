@@ -124,8 +124,9 @@ async function getPlaylist(id: number) {
   return response.data;
 }
 
-async function getSongsList() {
-  const response = await axios.get(`${avipeServer}/songs`);
+async function getSongsList(limit?: number) {
+  const queryParams = limit ? `?limit=${limit}` : "";
+  const response = await axios.get(`${avipeServer}/songs${queryParams}`);
 
   return response.data;
 }

@@ -1,8 +1,14 @@
 import { useQuery } from "react-query";
 import { api } from "../api";
 
-function useSongsList() {
-  return useQuery("songs-list", api.getSongsList);
+type SongsListOptions = {
+  limit?: number;
+};
+
+function useSongsList(options?: SongsListOptions) {
+  return useQuery(["songs-list", options], () =>
+    api.getSongsList(options?.limit)
+  );
 }
 
 function usePlaylists() {
