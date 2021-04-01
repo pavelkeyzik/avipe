@@ -16,7 +16,7 @@ function RecentSounds() {
   }
 
   return (
-    <React.Fragment>
+    <RootGrid>
       <h2>Recent Sounds</h2>
       <SoundPlaylist isLoading={songsList.isLoading} songs={songsList.data} />
       {songsList.data && songsList.data.length > 0 ? (
@@ -24,9 +24,14 @@ function RecentSounds() {
           <Button onClick={openRouteAllSounds}>Show More Sounds</Button>
         </MoreSoundsContainer>
       ) : null}
-    </React.Fragment>
+    </RootGrid>
   );
 }
+
+const RootGrid = styled.div`
+  display: grid;
+  grid-gap: 20px;
+`;
 
 const MoreSoundsContainer = styled.div`
   display: flex;

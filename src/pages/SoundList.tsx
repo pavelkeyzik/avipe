@@ -25,7 +25,7 @@ function SoundList() {
 
 const RootGrid = styled(MainContentLayout)`
   display: grid;
-  grid-gap: 40px;
+  grid-gap: 20px;
 `;
 
 export { SoundList };

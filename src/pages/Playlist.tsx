@@ -92,11 +92,13 @@ function Playlist() {
         ) : null}
       </PlaylistHeader>
       <PlaylistContentLayout>
-        <h2>Songs</h2>
-        <SoundPlaylist
-          isLoading={playlistInfo.isLoading}
-          songs={playlistInfo.data?.songs}
-        />
+        <SongsGrid>
+          <h2>Songs</h2>
+          <SoundPlaylist
+            isLoading={playlistInfo.isLoading}
+            songs={playlistInfo.data?.songs}
+          />
+        </SongsGrid>
       </PlaylistContentLayout>
     </div>
   );
@@ -161,6 +163,11 @@ const Title = styled.h1`
 
 const PlayButton = styled(Button)`
   margin-top: 32px;
+`;
+
+const SongsGrid = styled.div`
+  display: grid;
+  grid-gap: 20px;
 `;
 
 export { Playlist };
