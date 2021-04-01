@@ -29,6 +29,7 @@ const theme = {
     foreground: "#ffffff",
   },
   layerManager: {
+    modals: 11,
     player: 10,
     leftNavigation: 9,
     topNavigation: 8,

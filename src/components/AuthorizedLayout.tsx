@@ -3,8 +3,11 @@ import styled from "@emotion/styled";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
+import { useModal } from "../core/hooks/use-modal";
 import { useAuthState } from "../core/hooks/use-spotify-auth";
 import { Avatar } from "../design-system/Avatar";
+import { Button } from "../design-system/Button";
+import { Modal } from "../design-system/Modal";
 import { CurrentSongInformation } from "./CurrentSongInformation";
 import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackNoTextIcon } from "./icons/LogoBlack";
@@ -12,6 +15,7 @@ import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
+  const modalState = useModal();
   const authState = useAuthState();
   const currentUser = useCurrentUser();
 
@@ -37,7 +41,7 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
               <img src={currentUser.data.images?.[0].url} alt="User Logo" />
             </Avatar>
             <p>{currentUser.data.display_name}</p>
-            <SignOutButton onClick={authState.signOut}>
+            <SignOutButton onClick={modalState.open}>
               <PowerIcon />
             </SignOutButton>
           </CurrentUserInfo>
@@ -45,6 +49,18 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
       </TopNavigaiton>
       <Main>{props.children}</Main>
       <CurrentSongInformation />
+      <Modal visible={modalState.visible}>
+        <h1>Sign Out</h1>
+        <p>Are you sure you want to Sign Out?</p>
+        <ModalContent>
+          <Button variant="outlined" shape="square" onClick={modalState.close}>
+            Cancel
+          </Button>
+          <Button shape="square" onClick={authState.signOut}>
+            Sign Out
+          </Button>
+        </ModalContent>
+      </Modal>
     </LayoutGrid>
   );
 }
@@ -156,6 +172,13 @@ const SignOutButton = styled.button`
     background: white;
     color: #000;
   }
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 20px;
 `;
 
 export { AuthorizedLayout };
