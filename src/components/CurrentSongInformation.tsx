@@ -64,6 +64,7 @@ function CurrentSongInformation() {
 
 const Footer = styled(motion.div)`
   position: fixed;
+  z-index: 16;
   bottom: 0;
   left: 0;
   width: 100%;
