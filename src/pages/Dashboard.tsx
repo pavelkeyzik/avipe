@@ -18,10 +18,6 @@ function Dashboard() {
     navigate(`sound`);
   }
 
-  if (songsList.isLoading || playlists.isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Root>
       <div>
@@ -43,7 +39,7 @@ function Dashboard() {
       </GenresGrid> */}
       <h2>Playlists</h2>
       <CardGrid>
-        {playlists.data.map((playlist: any) => {
+        {playlists.data?.map((playlist: any) => {
           function openPlaylist() {
             navigate(`playlist/${playlist.id}`);
           }
@@ -61,7 +57,7 @@ function Dashboard() {
       </CardGrid>
 
       <h2>Recent Sounds</h2>
-      <SoundPlaylist songs={songsList.data} />
+      <SoundPlaylist isLoading={songsList.isLoading} songs={songsList.data} />
       <MoreSoundsContainer>
         <Button onClick={openRouteAllSounds}>Show More Sounds</Button>
       </MoreSoundsContainer>

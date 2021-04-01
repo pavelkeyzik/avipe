@@ -32,7 +32,10 @@ function Playlist() {
         <Card.PlayButton onClick={playPlaylist} />
       </Card>
       <h2>Songs</h2>
-      <SoundPlaylist songs={playlistInfo.data.songs} />
+      <SoundPlaylist
+        isLoading={playlistInfo.isLoading}
+        songs={playlistInfo.data.songs}
+      />
     </div>
   );
 }

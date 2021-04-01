@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { VolumeIcon } from "../components/icons/Volume";
 import {
   CurrentSong,
@@ -55,6 +56,16 @@ const Root = styled.div(
   `
 );
 
+const RootFallback = styled(Root)`
+  cursor: default;
+  color: unset;
+  background: rgba(255, 255, 255, 0.03);
+
+  :hover {
+    color: unset;
+  }
+`;
+
 const Left = styled.div`
   display: flex;
   align-items: center;
@@ -91,6 +102,12 @@ const ImageContainer = styled.div(
   `
 );
 
+const ImageContainerFallback = styled.div`
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.04);
+`;
+
 const Time = styled.span(
   ({ theme }) => css`
     color: ${theme.soundCard.timeForeground};
@@ -109,5 +126,20 @@ const PlayingStatus = styled.div`
   background: rgba(0, 0, 0, 0.4);
   color: white;
 `;
+
+function SoundCardFallback() {
+  return (
+    <motion.div
+      animate={{ opacity: [0.5, 1, 0.5] }}
+      transition={{ loop: Infinity, duration: 1 }}
+    >
+      <RootFallback>
+        <ImageContainerFallback />
+      </RootFallback>
+    </motion.div>
+  );
+}
+
+SoundCard.Fallback = SoundCardFallback;
 
 export { SoundCard };
