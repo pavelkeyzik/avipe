@@ -92,6 +92,7 @@ const LeftNavigation = styled.div(
 
 const TopNavigaiton = styled.div(
   ({ theme }) => css`
+    pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -116,6 +117,7 @@ const TopNavigaiton = styled.div(
 );
 
 const CurrentUserInfo = styled.div`
+  pointer-events: all;
   display: flex;
   align-items: center;
   gap: 20px;
