@@ -9,6 +9,7 @@ import { PauseIcon } from "./icons/Pause";
 import { PlayIcon } from "./icons/Play";
 import { SkipBackIcon } from "./icons/SkipBack";
 import { SkipForwardIcon } from "./icons/SkipForward";
+import { SoundSlider } from "./SoundSlider";
 
 function CurrentSongInformation() {
   const player = usePlayer();
@@ -36,7 +37,11 @@ function CurrentSongInformation() {
         <SongProgressTime style={{ justifyContent: "flex-end" }}>
           {getFormattedTimeFromSeconds(player.currentTime)}
         </SongProgressTime>
-        <ProgressBar max={player.duration} value={player.currentTime} />
+        <SoundSlider
+          value={player.currentTime ?? 0}
+          max={player.duration ?? 100}
+          onRelease={player.seek}
+        />
         <SongProgressTime>
           {getFormattedTimeFromSeconds(player.duration)}
         </SongProgressTime>
@@ -96,6 +101,8 @@ const SoundImageContainer = styled.div(
 
 const SoundInfoRoot = styled.div`
   display: flex;
+  flex: 1;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
   flex-shrink: 0;
@@ -104,21 +111,29 @@ const SoundInfoRoot = styled.div`
 const SoundInfo = styled.div`
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
 `;
 
 const SoundInfoSongName = styled.h4`
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const SoundInfoTitle = styled.span`
   color: rgba(255, 255, 255, 0.5);
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const PlayerControls = styled.div`
   display: flex;
+  flex: 1;
   flex-shrink: 0;
   gap: 24px;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -149,8 +164,10 @@ const IconButton = styled.button`
 
 const SongProgress = styled.div`
   display: flex;
+  flex: 6;
   gap: 20px;
   width: 100%;
+  max-width: 1200px;
   align-items: center;
   padding: 0 64px;
 `;
@@ -158,41 +175,6 @@ const SongProgress = styled.div`
 const SongProgressTime = styled.div`
   width: 90px;
   display: flex;
-`;
-
-type ProgressBarProps = {
-  max?: number | null;
-  value?: number | null;
-};
-
-function ProgressBar(props: ProgressBarProps) {
-  const maxValue = props.max ?? 100;
-  const value = props.value ?? 0;
-  const progress = Math.ceil((value * 100) / maxValue);
-
-  return (
-    <ProgressBarRoot>
-      <ProgressBarFilled style={{ width: `${progress}%` }} />
-    </ProgressBarRoot>
-  );
-}
-
-const ProgressBarRoot = styled.div`
-  display: flex;
-  flex-grow: 1;
-  position: relative;
-  height: 4px;
-  border-radius: 4px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.3);
-`;
-
-const ProgressBarFilled = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background: white;
 `;
 
 export { CurrentSongInformation };

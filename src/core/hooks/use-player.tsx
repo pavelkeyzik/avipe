@@ -29,6 +29,7 @@ type ContextType = {
   pause: () => void;
   next: () => void;
   prev: () => void;
+  seek: (time: number) => void;
 };
 
 const PlayerContext = createContext<ContextType>({
@@ -45,6 +46,7 @@ const PlayerContext = createContext<ContextType>({
   pause: () => {},
   next: () => {},
   prev: () => {},
+  seek: () => {},
 });
 
 function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
@@ -185,6 +187,15 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     }
   }
 
+  function seek(value: number) {
+    if (!currentSong) {
+      return;
+    }
+
+    audio.currentTime = value;
+    setCurrentTime(value);
+  }
+
   return (
     <PlayerContext.Provider
       value={{
@@ -201,6 +212,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         songsQueue,
         next,
         prev,
+        seek,
       }}
     >
       {props.children}
