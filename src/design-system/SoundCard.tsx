@@ -49,9 +49,12 @@ const Root = styled.div(
     border-radius: 8px;
     cursor: pointer;
     color: ${theme.soundCard.textForeground};
+    transition: 0.2s;
 
     :hover {
       color: ${theme.soundCard.textForegroundHover};
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
   `
 );
