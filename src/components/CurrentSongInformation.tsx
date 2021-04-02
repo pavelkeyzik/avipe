@@ -132,7 +132,7 @@ const PlayerControls = styled.div`
   display: flex;
   flex: 1;
   flex-shrink: 0;
-  gap: 24px;
+  gap: 12px;
   justify-content: flex-end;
   align-items: center;
 `;
@@ -147,7 +147,8 @@ const PlayButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 30px;
-  background: white;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
   cursor: pointer;
 `;
 
