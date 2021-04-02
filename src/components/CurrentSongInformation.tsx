@@ -34,7 +34,7 @@ function CurrentSongInformation() {
         </SoundInfo>
       </SoundInfoRoot>
       <SongProgress>
-        <SongProgressTime style={{ justifyContent: "flex-end" }}>
+        <SongProgressTime right>
           {getFormattedTimeFromSeconds(player.currentTime)}
         </SongProgressTime>
         <SoundSlider
@@ -172,9 +172,15 @@ const SongProgress = styled.div`
   padding: 0 64px;
 `;
 
-const SongProgressTime = styled.div`
+const SongProgressTime = styled.div<{ right?: boolean }>`
   width: 90px;
   display: flex;
+
+  ${(props) =>
+    props.right &&
+    css`
+      justify-content: flex-end;
+    `}
 `;
 
 export { CurrentSongInformation };
