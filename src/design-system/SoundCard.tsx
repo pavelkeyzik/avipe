@@ -52,7 +52,7 @@ const Root = styled.div(
     transition: 0.2s;
 
     :hover {
-      color: ${theme.soundCard.textForegroundHover};
+      color: #43d17c;
       box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.08);
     }
@@ -83,7 +83,7 @@ const CardTitle = styled.h3<{ isPlaying?: boolean }>(
 
     ${isPlaying &&
     css`
-      color: ${theme.soundCard.textForegroundHover};
+      color: #43d17c;
     `}
   `
 );
