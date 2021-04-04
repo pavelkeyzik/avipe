@@ -22,6 +22,7 @@ import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { PlayerProvider } from "./core/hooks/use-player";
 import { Playlist } from "./pages/Playlist";
+import { Profile } from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function Application() {
               <Route path="/" element={<SoundList />} />
             </Route>
             <Route path="/playlist/:id" element={<Playlist />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </AuthorizedLayout>

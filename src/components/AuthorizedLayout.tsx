@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { useModal } from "../core/hooks/use-modal";
 import { useAuthState } from "../core/hooks/use-spotify-auth";
@@ -13,11 +13,24 @@ import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackNoTextIcon } from "./icons/LogoBlack";
 import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
+import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
   const modalState = useModal();
   const authState = useAuthState();
   const currentUser = useCurrentUser();
+  const navigate = useNavigate();
+
+  function handleSignOutClick(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    event.stopPropagation();
+    modalState.open();
+  }
+
+  function openRouteProfile() {
+    navigate("/profile");
+  }
 
   return (
     <LayoutGrid>
@@ -32,16 +45,19 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
           <NavLink to="/sound" activeClassName="active">
             <SoundIcon />
           </NavLink>
+          <NavLink to="/profile" activeClassName="active">
+            <UserIcon />
+          </NavLink>
         </Navigation>
       </LeftNavigation>
       <TopNavigaiton>
         {currentUser.data ? (
-          <CurrentUserInfo>
+          <CurrentUserInfo onClick={openRouteProfile}>
             <Avatar>
               <img src={currentUser.data.images?.[0].url} alt="User Logo" />
             </Avatar>
             <p>{currentUser.data.display_name}</p>
-            <SignOutButton onClick={modalState.open}>
+            <SignOutButton onClick={handleSignOutClick}>
               <PowerIcon />
             </SignOutButton>
           </CurrentUserInfo>
@@ -124,6 +140,13 @@ const CurrentUserInfo = styled.div`
   background: rgba(22, 22, 31, 0.9);
   padding: 8px;
   border-radius: 200px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #ddd;
+
+  :hover {
+    color: #fff;
+  }
 `;
 
 const Main = styled.div`

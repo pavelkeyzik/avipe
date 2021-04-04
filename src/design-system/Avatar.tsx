@@ -1,17 +1,29 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-function Avatar(props: React.PropsWithChildren<any>) {
-  return <Root>{props.children}</Root>;
+type AvatarProps = {
+  variant: "small" | "large";
+};
+
+function Avatar(props: React.PropsWithChildren<AvatarProps>) {
+  return <Root {...props} />;
 }
 
-const Root = styled.div(
-  ({ theme }) => css`
-    width: 48px;
-    height: 48px;
+const Root = styled.div<AvatarProps>(
+  ({ theme, variant }) => css`
     border-radius: 50%;
     background: ${theme.avatar.background};
     overflow: hidden;
+
+    ${variant === "large"
+      ? css`
+          width: 128px;
+          height: 128px;
+        `
+      : css`
+          width: 48px;
+          height: 48px;
+        `}
 
     img {
       object-fit: cover;
@@ -20,5 +32,9 @@ const Root = styled.div(
     }
   `
 );
+
+Avatar.defaultProps = {
+  variant: "small",
+};
 
 export { Avatar };
