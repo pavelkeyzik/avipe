@@ -10,7 +10,7 @@ import { Button } from "../design-system/Button";
 import { Modal } from "../design-system/Modal";
 import { CurrentSongInformation } from "./CurrentSongInformation";
 import { DashboardIcon } from "./icons/Dashboard";
-import { LogoBlackNoTextIcon } from "./icons/LogoBlack";
+import { LogoBlackIcon } from "./icons/LogoBlack";
 import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
 import { UserIcon } from "./icons/User";
@@ -32,23 +32,30 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
     navigate("/profile");
   }
 
+  function openRouteHome() {
+    navigate("/");
+  }
+
   return (
     <LayoutGrid>
       <LeftNavigation>
-        <Navigation>
-          <LogoContainer>
-            <LogoBlackNoTextIcon />
-          </LogoContainer>
+        <LogoContainer onClick={openRouteHome}>
+          <LogoBlackIcon />
+        </LogoContainer>
+        <NavigationLinks>
           <NavLink to="/" activeClassName="active" end>
             <DashboardIcon />
+            Dashboard
           </NavLink>
           <NavLink to="/sound" activeClassName="active">
             <SoundIcon />
+            All Sounds
           </NavLink>
           <NavLink to="/profile" activeClassName="active">
             <UserIcon />
+            Profile
           </NavLink>
-        </Navigation>
+        </NavigationLinks>
       </LeftNavigation>
       <TopNavigaiton>
         {currentUser.data ? (
@@ -83,15 +90,22 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
 
 const LogoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  padding: 0 40px;
   align-items: center;
   color: #43d17c;
   height: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 100px;
+
+  :hover {
+    color: #36a763;
+  }
 `;
 
 const LayoutGrid = styled.div`
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 280px 1fr;
   grid-template-rows: 80px 1fr;
   height: 100vh;
 `;
@@ -103,6 +117,7 @@ const LeftNavigation = styled.div(
     grid-row: 1 / 3;
     grid-column: 1 / 2;
     background: ${theme.body.background};
+    background: #0f0f16;
   `
 );
 
@@ -159,19 +174,19 @@ const Main = styled.div`
   }
 `;
 
-const Navigation = styled.div`
+const NavigationLinks = styled.div`
   display: grid;
-  align-items: stretch;
-  grid-auto-rows: 100px;
-  align-items: center;
-  min-height: 120px;
+  grid-auto-rows: 80px;
 
   a {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0 40px;
     align-items: center;
     height: 100%;
     color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
 
     &.active {
       color: #fff;
