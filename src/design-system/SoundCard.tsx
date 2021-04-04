@@ -35,7 +35,7 @@ function SoundCard(props: SoundCardProps) {
         </CardTitle>
       </Left>
       {props.songData.duration ? (
-        <Time>{getFormattedTimeFromSeconds(props.songData.duration)} min</Time>
+        <Time>{getFormattedTimeFromSeconds(props.songData.duration)}</Time>
       ) : null}
     </Root>
   );
