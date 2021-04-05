@@ -23,6 +23,8 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { PlayerProvider } from "./core/hooks/use-player";
 import { Playlist } from "./pages/Playlist";
 import { Profile } from "./pages/Profile";
+import { Genres } from "./pages/Genres/Genres";
+import { SoundsByGenre } from "./pages/Genres/SoundsByGenre";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,10 @@ function Application() {
             <Route path="/" element={<Dashboard />} />
             <Route path="sound/*" element={<Outlet />}>
               <Route path="/" element={<SoundList />} />
+            </Route>
+            <Route path="genres/*" element={<Outlet />}>
+              <Route path="/" element={<Genres />} />
+              <Route path="/:id" element={<SoundsByGenre />} />
             </Route>
             <Route path="/playlist/:id" element={<Playlist />} />
             <Route path="/profile" element={<Profile />} />

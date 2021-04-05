@@ -19,4 +19,12 @@ function usePlaylist(id: number) {
   return useQuery(["playlist", id], () => api.getPlaylist(id));
 }
 
-export { useSongsList, usePlaylists, usePlaylist };
+function useGenres() {
+  return useQuery("genres-list", api.getGenres);
+}
+
+function useGenre(id: number) {
+  return useQuery(["genre", id], () => api.getGenre(id));
+}
+
+export { useSongsList, usePlaylists, usePlaylist, useGenres, useGenre };

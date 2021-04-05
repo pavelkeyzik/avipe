@@ -6,15 +6,22 @@ function Profile() {
   const currentUser = useCurrentUser();
 
   if (currentUser.isLoading) {
-    return <MainContentLayout>Loading...</MainContentLayout>;
+    return (
+      <MainContentLayout>
+        <h2>Profile</h2>
+        <div>Loading...</div>
+      </MainContentLayout>
+    );
   }
 
   return (
     <MainContentLayout>
+      <h2>Profile</h2>
       <div
         style={{
           display: "flex",
           gap: 40,
+          marginTop: 40,
           alignItems: "flex-start",
         }}
       >

@@ -32,6 +32,10 @@ const globalStyles = css`
 
   a {
     color: white;
+
+    :hover {
+      color: #43d17c;
+    }
   }
 `;
 

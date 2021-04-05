@@ -113,13 +113,25 @@ async function getNewReleases() {
 }
 
 async function getPlaylists() {
-  const response = await axios.get(`${avipeServer}/playlists`);
+  const response = await axios.get(`${avipeServer}/playlists?limit=4`);
 
   return response.data;
 }
 
 async function getPlaylist(id: number) {
   const response = await axios.get(`${avipeServer}/playlists/${id}`);
+
+  return response.data;
+}
+
+async function getGenres() {
+  const response = await axios.get(`${avipeServer}/genres`);
+
+  return response.data;
+}
+
+async function getGenre(id: number) {
+  const response = await axios.get(`${avipeServer}/genres/${id}`);
 
   return response.data;
 }
@@ -142,6 +154,8 @@ export const api = {
   getNewReleases,
   getPlaylists,
   getPlaylist,
+  getGenres,
+  getGenre,
   getSongsList,
   getSongURL,
 };

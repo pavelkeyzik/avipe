@@ -45,7 +45,7 @@ function SoundPlaylist(props: SoundPlaylistProps) {
     return <Fallback />;
   }
 
-  if (!props.songs) {
+  if (!props.songs || props.songs.length === 0) {
     return <div>No Songs...</div>;
   }
 

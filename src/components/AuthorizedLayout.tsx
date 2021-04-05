@@ -13,6 +13,7 @@ import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackIcon } from "./icons/LogoBlack";
 import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
+import { TargetIcon } from "./icons/Target";
 import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
@@ -54,6 +55,10 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
           <NavLink to="/profile" activeClassName="active">
             <UserIcon />
             Profile
+          </NavLink>
+          <NavLink to="/genres" activeClassName="active">
+            <TargetIcon />
+            Genres
           </NavLink>
         </NavigationLinks>
       </LeftNavigation>
