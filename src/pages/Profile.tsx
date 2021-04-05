@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { MainContentLayout } from "../components/MainContentLayout";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { Avatar } from "../design-system/Avatar";
@@ -7,21 +8,20 @@ function Profile() {
 
   if (currentUser.isLoading) {
     return (
-      <MainContentLayout>
+      <RootGrid>
         <h2>Profile</h2>
         <div>Loading...</div>
-      </MainContentLayout>
+      </RootGrid>
     );
   }
 
   return (
-    <MainContentLayout>
+    <RootGrid>
       <h2>Profile</h2>
       <div
         style={{
           display: "flex",
           gap: 40,
-          marginTop: 40,
           alignItems: "flex-start",
         }}
       >
@@ -36,8 +36,13 @@ function Profile() {
           <div>Country: {currentUser.data.country}</div>
         </div>
       </div>
-    </MainContentLayout>
+    </RootGrid>
   );
 }
+
+const RootGrid = styled(MainContentLayout)`
+  display: grid;
+  grid-gap: 20px;
+`;
 
 export { Profile };

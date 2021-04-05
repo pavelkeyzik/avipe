@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useParams } from "react-router";
 import { MainContentLayout } from "../../components/MainContentLayout";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
@@ -8,11 +9,16 @@ function SoundsByGenre() {
   const genre = useGenre(+id);
 
   return (
-    <MainContentLayout>
-      <h1>Sounds By Genre</h1>
+    <RootGrid>
+      <h2>Sounds By Genre</h2>
       <SoundPlaylist isLoading={genre.isLoading} songs={genre.data?.songs} />
-    </MainContentLayout>
+    </RootGrid>
   );
 }
+
+const RootGrid = styled(MainContentLayout)`
+  display: grid;
+  grid-gap: 20px;
+`;
 
 export { SoundsByGenre };

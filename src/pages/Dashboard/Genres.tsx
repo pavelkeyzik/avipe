@@ -42,7 +42,7 @@ function GenresCards(props: GenresCardsProps) {
 function Fallback() {
   return (
     <GenresGrid>
-      <div>FALLBACK</div>
+      <div>Loading...</div>
     </GenresGrid>
   );
 }

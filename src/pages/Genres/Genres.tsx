@@ -8,30 +8,34 @@ function Genres() {
 
   if (genresList.isLoading) {
     return (
-      <MainContentLayout>
+      <RootGrid>
         <h2>Genres</h2>
         <div>Loading...</div>
-      </MainContentLayout>
+      </RootGrid>
     );
   }
 
   return (
-    <MainContentLayout>
+    <RootGrid>
       <h2>Genres</h2>
       <GenresGrid>
         {genresList.data.map((genre: any) => (
           <GenreGridItem to={`/genres/${genre.id}`}>{genre.name}</GenreGridItem>
         ))}
       </GenresGrid>
-    </MainContentLayout>
+    </RootGrid>
   );
 }
+
+const RootGrid = styled(MainContentLayout)`
+  display: grid;
+  grid-gap: 20px;
+`;
 
 const GenresGrid = styled.div`
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 30px;
 `;
 
 const GenreGridItem = styled(Link)`
