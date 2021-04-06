@@ -14,7 +14,6 @@ import { LogoBlackIcon } from "./icons/LogoBlack";
 import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
 import { TargetIcon } from "./icons/Target";
-import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
   const modalState = useModal();
@@ -51,10 +50,6 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
           <NavLink to="/sound" activeClassName="active">
             <SoundIcon />
             All Sounds
-          </NavLink>
-          <NavLink to="/profile" activeClassName="active">
-            <UserIcon />
-            Profile
           </NavLink>
           <NavLink to="/genres" activeClassName="active">
             <TargetIcon />

@@ -29,8 +29,12 @@ function CurrentSongInformation() {
           <img src={player.currentSong.cover_image} alt="Sound Cover" />
         </SoundImageContainer>
         <SoundInfo>
-          <SoundInfoSongName>{player.currentSong.name}</SoundInfoSongName>
-          <SoundInfoTitle>{player.currentSong.artist}</SoundInfoTitle>
+          <SoundInfoSongName>
+            {player.currentSong.name ?? "Unknown"}
+          </SoundInfoSongName>
+          <SoundInfoTitle>
+            {player.currentSong.artist ?? "Unknown"}
+          </SoundInfoTitle>
         </SoundInfo>
       </SoundInfoRoot>
       <SongProgress>

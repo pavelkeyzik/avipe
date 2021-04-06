@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { MainContentLayout } from "../../components/MainContentLayout";
 import { useCurrentUser } from "../../core/hooks/use-current-user";
-import { Genres } from "./Genres";
 import { Playlists } from "./Playlists";
 import { RecentSounds } from "./RecentSounds";
 
@@ -14,7 +13,6 @@ function Dashboard() {
         <h1>Welcome back, {currentUser.data?.display_name ?? "..."}!</h1>
         <p>We prepared a lot of things for you...</p>
       </div>
-      <Genres />
       <Playlists />
       <RecentSounds />
     </Root>
