@@ -126,6 +126,7 @@ const Root = styled.div`
   align-items: center;
   width: 100%;
   height: ${config.thumbSize};
+  cursor: pointer;
 `;
 
 const Track = styled.div`
