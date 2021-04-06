@@ -18,7 +18,10 @@ function RecentSounds() {
   return (
     <RootGrid>
       <h2>Recent Sounds</h2>
-      <SoundPlaylist isLoading={songsList.isLoading} songs={songsList.data} />
+      <SoundListContainer>
+        <SoundPlaylist isLoading={songsList.isLoading} songs={songsList.data} />
+        <SoundsFading />
+      </SoundListContainer>
       {songsList.data && songsList.data.length > 0 ? (
         <MoreSoundsContainer>
           <Button onClick={openRouteAllSounds}>Show More Sounds</Button>
@@ -34,17 +37,31 @@ const RootGrid = styled.div`
   grid-gap: 20px;
 `;
 
-const MoreSoundsContainer = styled.div(
+const MoreSoundsContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 3;
+`;
+
+const SoundListContainer = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+
+const SoundsFading = styled.div(
   ({ theme }) => css`
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background: linear-gradient(transparent, ${theme.body.background});
-    min-height: 240px;
+    min-height: 340px;
+    pointer-events: none;
+    transform: scaleY(1.1) scaleX(1.1);
+    z-index: 2;
   `
 );
 
