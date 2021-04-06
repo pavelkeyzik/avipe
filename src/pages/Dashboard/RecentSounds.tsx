@@ -1,5 +1,5 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
 import { useNavigate } from "react-router";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
 import { useSongsList } from "../../core/hooks/use-songs";
@@ -29,13 +29,23 @@ function RecentSounds() {
 }
 
 const RootGrid = styled.div`
+  position: relative;
   display: grid;
   grid-gap: 20px;
 `;
 
-const MoreSoundsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+const MoreSoundsContainer = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, ${theme.body.background});
+    min-height: 240px;
+  `
+);
 
 export { RecentSounds };
