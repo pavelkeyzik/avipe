@@ -55,8 +55,8 @@ const theme = {
   layerManager: {
     modals: 11,
     player: 10,
-    leftNavigation: 9,
-    topNavigation: 8,
+    navigation: 9,
+    header: 8,
   },
   link: {
     foreground: tokens.colors.white,
