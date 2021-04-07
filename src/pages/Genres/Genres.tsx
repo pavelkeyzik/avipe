@@ -21,7 +21,9 @@ function Genres() {
       <Typography.H2>Genres</Typography.H2>
       <GenresGrid>
         {genresList.data.map((genre: any) => (
-          <GenreGridItem to={`/genres/${genre.id}`}>{genre.name}</GenreGridItem>
+          <GenreGridItem key={genre.id} to={`/genres/${genre.id}`}>
+            {genre.name}
+          </GenreGridItem>
         ))}
       </GenresGrid>
     </RootGrid>
