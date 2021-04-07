@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { VolumeIcon } from "../components/icons/Volume";
+import { Volume2Icon } from "../components/icons/Volume2";
 import {
   CurrentSong,
   getFormattedTimeFromSeconds,
@@ -24,7 +24,7 @@ function SoundCard(props: SoundCardProps) {
         <ImageContainer>
           {props.isPlaying ? (
             <PlayingStatus>
-              <VolumeIcon />
+              <Volume2Icon />
             </PlayingStatus>
           ) : null}
           <img src={props.songData.cover_image} alt="Sound Cover" />

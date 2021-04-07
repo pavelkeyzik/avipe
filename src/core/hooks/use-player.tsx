@@ -18,6 +18,7 @@ type SongStatus = "idle" | "playing" | "paused" | "stopped";
 type ContextType = {
   currentSong: CurrentSong | null;
   currentTime: number | null;
+  currentVolume: number | null;
   duration: number | null;
   status: SongStatus;
   songsQueue: CurrentSong[];
@@ -30,11 +31,13 @@ type ContextType = {
   next: () => void;
   prev: () => void;
   seek: (time: number) => void;
+  changeVolume: (time: number) => void;
 };
 
 const PlayerContext = createContext<ContextType>({
   currentSong: null,
   currentTime: null,
+  currentVolume: null,
   duration: null,
   status: "idle",
   songsQueue: [],
@@ -47,6 +50,7 @@ const PlayerContext = createContext<ContextType>({
   next: () => {},
   prev: () => {},
   seek: () => {},
+  changeVolume: () => {},
 });
 
 function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
@@ -66,6 +70,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   const audio = React.useMemo(() => new Audio(), []);
   const [duration, setDuration] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState<number | null>(null);
+  const [currentVolume, setCurrentVolume] = useState<number | null>(null);
   const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
   const [status, setStatus] = useState<SongStatus>("idle");
   const [savedCurrentTime, setSavedCurrentTime] = useState(0);
@@ -73,10 +78,12 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   useEffect(() => {
     audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("volumechange", handleVolumeUpdate);
 
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("volumechange", handleVolumeUpdate);
     };
   }, [audio]);
 
@@ -101,6 +108,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   function play() {
     if (currentSong) {
       audio.src = api.getSongURL(currentSong.id);
+      audio.volume = 0.5;
       audio.play();
       setStatus("playing");
     }
@@ -134,6 +142,16 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
     if (currentTime !== undefined) {
       setCurrentTime(currentTime);
+    }
+  }
+
+  function handleVolumeUpdate(event: Event) {
+    // @ts-expect-error Looks like path doesn't exists in typings
+    const path = event.path || (event.composedPath && event.composedPath());
+    const volume = path && path[0] && path[0].volume;
+
+    if (volume !== undefined) {
+      setCurrentVolume(Math.floor(volume * 100));
     }
   }
 
@@ -196,6 +214,15 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     setCurrentTime(value);
   }
 
+  function changeVolume(value: number) {
+    if (!currentSong) {
+      return;
+    }
+
+    audio.volume = value / 100;
+    setCurrentVolume(value);
+  }
+
   return (
     <PlayerContext.Provider
       value={{
@@ -204,6 +231,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         setCurrentSong,
         playSelectedSong,
         currentTime,
+        currentVolume,
         duration,
         play,
         resume,
@@ -213,6 +241,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         next,
         prev,
         seek,
+        changeVolume,
       }}
     >
       {props.children}

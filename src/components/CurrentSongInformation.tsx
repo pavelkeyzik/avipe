@@ -9,6 +9,9 @@ import { PauseIcon } from "./icons/Pause";
 import { PlayIcon } from "./icons/Play";
 import { SkipBackIcon } from "./icons/SkipBack";
 import { SkipForwardIcon } from "./icons/SkipForward";
+import { Volume1Icon } from "./icons/Volume1";
+import { Volume2Icon } from "./icons/Volume2";
+import { VolumeXIcon } from "./icons/VolumeX";
 import { SoundSlider } from "./SoundSlider";
 
 function CurrentSongInformation() {
@@ -51,6 +54,20 @@ function CurrentSongInformation() {
         </SongProgressTime>
       </SongProgress>
       <PlayerControls>
+        <VolumeContainer>
+          {player.currentVolume === 0 ? (
+            <VolumeXIcon />
+          ) : player.currentVolume && player.currentVolume >= 50 ? (
+            <Volume2Icon />
+          ) : (
+            <Volume1Icon />
+          )}
+          <SoundSlider
+            value={player.currentVolume ?? 0}
+            max={100}
+            onChange={player.changeVolume}
+          />
+        </VolumeContainer>
         <IconButton onClick={player.prev}>
           <SkipBackIcon />
         </IconButton>
@@ -186,6 +203,12 @@ const SongProgressTime = styled.div<{ right?: boolean }>`
     css`
       justify-content: flex-end;
     `}
+`;
+
+const VolumeContainer = styled.div`
+  display: flex;
+  gap: 8;
+  width: 200px;
 `;
 
 export { CurrentSongInformation };

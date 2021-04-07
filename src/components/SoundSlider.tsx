@@ -29,6 +29,7 @@ type SoundSliderProps = {
   value: number;
   max: number;
   onRelease?: (result: number) => void;
+  onChange?: (result: number) => void;
 };
 
 function SoundSlider(props: SoundSliderProps) {
@@ -101,6 +102,10 @@ function SoundSlider(props: SoundSliderProps) {
 
   function updateProgressPosition(progressNumber: number) {
     setLocalProgress(progressNumber);
+
+    if (props.onChange) {
+      props.onChange(progressNumber);
+    }
   }
 
   return (
