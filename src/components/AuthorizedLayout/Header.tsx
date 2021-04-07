@@ -1,3 +1,4 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
@@ -26,22 +27,24 @@ function Header() {
   }
 
   return (
-    <Root>
-      {currentUser.data ? (
-        <CurrentUserInfo onClick={openRouteProfile}>
-          <Avatar>
-            {currentUser.data.images?.[0].url ? (
-              <img src={currentUser.data.images?.[0].url} alt="User Logo" />
-            ) : (
-              <UserIcon />
-            )}
-          </Avatar>
-          <p>{currentUser.data.display_name}</p>
-          <SignOutButton onClick={handleSignOutClick}>
-            <PowerIcon />
-          </SignOutButton>
-        </CurrentUserInfo>
-      ) : null}
+    <React.Fragment>
+      <Root>
+        {currentUser.data ? (
+          <CurrentUserInfo onClick={openRouteProfile}>
+            <Avatar>
+              {currentUser.data.images?.[0].url ? (
+                <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+              ) : (
+                <UserIcon />
+              )}
+            </Avatar>
+            <p>{currentUser.data.display_name}</p>
+            <SignOutButton onClick={handleSignOutClick}>
+              <PowerIcon />
+            </SignOutButton>
+          </CurrentUserInfo>
+        ) : null}
+      </Root>
       <Modal visible={modalState.visible}>
         <Typography.H1>Sign Out</Typography.H1>
         <Typography.P>Are you sure you want to Sign Out?</Typography.P>
@@ -54,7 +57,7 @@ function Header() {
           </Button>
         </ModalContent>
       </Modal>
-    </Root>
+    </React.Fragment>
   );
 }
 
@@ -63,7 +66,7 @@ const Root = styled.div(
     pointer-events: none;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 20px;
     padding: 16px 48px;
     position: fixed;
@@ -80,6 +83,10 @@ const Root = styled.div(
       width: 100%;
       height: 160px;
       z-index: -1;
+    }
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      justify-content: flex-end;
     }
   `
 );

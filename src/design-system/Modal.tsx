@@ -61,15 +61,18 @@ const RootContainer = styled(motion.div)<ModalProps>(
   `
 );
 
-const ModalContent = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  background: #2d2d35;
-  padding: 16px 32px 32px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 600px;
-  min-height: 200px;
-`;
+const ModalContent = styled(motion.div)(
+  ({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    background: #2d2d35;
+    padding: 16px 32px 32px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    min-height: 200px;
+    margin: 0 ${theme.contentPadding};
+  `
+);
 
 export { Modal };
