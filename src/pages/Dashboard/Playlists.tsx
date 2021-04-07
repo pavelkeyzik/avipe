@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import React from "react";
@@ -94,10 +95,16 @@ function Fallback() {
   );
 }
 
-const CardGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-`;
+const CardGrid = styled(motion.div)(
+  ({ theme }) => css`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  `
+);
 
 export { Playlists };
