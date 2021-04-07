@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { useModal } from "../core/hooks/use-modal";
 import { useAuthState } from "../core/hooks/use-auth";
@@ -17,10 +17,18 @@ import { TargetIcon } from "./icons/Target";
 import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
   const modalState = useModal();
   const authState = useAuthState();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTo({ top: 0 });
+    }
+  }, [mainContentRef, pathname]);
 
   function handleSignOutClick(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -75,7 +83,7 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
           </CurrentUserInfo>
         ) : null}
       </TopNavigaiton>
-      <Main>{props.children}</Main>
+      <Main ref={mainContentRef}>{props.children}</Main>
       <CurrentSongInformation />
       <Modal visible={modalState.visible}>
         <h1>Sign Out</h1>
