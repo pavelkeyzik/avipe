@@ -3,11 +3,12 @@ import React from "react";
 import { MainContentLayout } from "../components/MainContentLayout";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 import { useSongsList } from "../core/hooks/use-songs";
+import { Typography } from "../design-system";
 
 function SoundListLayout(props: React.PropsWithChildren<unknown>) {
   return (
     <RootGrid>
-      <h2>All Sounds</h2>
+      <Typography.H2>All Sounds</Typography.H2>
       {props.children}
     </RootGrid>
   );

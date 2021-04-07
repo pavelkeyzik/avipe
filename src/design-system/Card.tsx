@@ -59,6 +59,7 @@ const CardRootFallback = styled.div`
   display: flex;
   background: rgba(255, 255, 255, 0.04);
   height: 200px;
+  border-radius: 8px;
 `;
 
 Card.PlayButton = PlayButton;

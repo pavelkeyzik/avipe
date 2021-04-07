@@ -7,6 +7,7 @@ import { PlaylistContentLayout } from "../components/PlaylistContentLayout";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 import { usePlayer } from "../core/hooks/use-player";
 import { usePlaylist } from "../core/hooks/use-songs";
+import { Typography } from "../design-system";
 import { Button } from "../design-system/Button";
 
 const variantsText = {
@@ -93,7 +94,7 @@ function Playlist() {
       </PlaylistHeader>
       <PlaylistContentLayout>
         <SongsGrid>
-          <h2>Songs</h2>
+          <Typography.H2>Songs</Typography.H2>
           <SoundPlaylist
             isLoading={playlistInfo.isLoading}
             songs={playlistInfo.data?.songs}
@@ -156,7 +157,7 @@ const ImageContainer = styled(motion.div)`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled(Typography.H1)`
   margin: 0;
   text-align: center;
 `;

@@ -5,9 +5,6 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { useModal } from "../core/hooks/use-modal";
 import { useAuthState } from "../core/hooks/use-auth";
-import { Avatar } from "../design-system/Avatar";
-import { Button } from "../design-system/Button";
-import { Modal } from "../design-system/Modal";
 import { CurrentSongInformation } from "./CurrentSongInformation";
 import { DashboardIcon } from "./icons/Dashboard";
 import { LogoBlackIcon } from "./icons/LogoBlack";
@@ -15,6 +12,7 @@ import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
 import { TargetIcon } from "./icons/Target";
 import { UserIcon } from "./icons/User";
+import { Avatar, Button, Modal, Typography } from "../design-system";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
   const mainContentRef = useRef<HTMLDivElement>(null);
@@ -86,8 +84,8 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
       <Main ref={mainContentRef}>{props.children}</Main>
       <CurrentSongInformation />
       <Modal visible={modalState.visible}>
-        <h1>Sign Out</h1>
-        <p>Are you sure you want to Sign Out?</p>
+        <Typography.H1>Sign Out</Typography.H1>
+        <Typography.P>Are you sure you want to Sign Out?</Typography.P>
         <ModalContent>
           <Button variant="outlined" shape="square" onClick={modalState.close}>
             Cancel

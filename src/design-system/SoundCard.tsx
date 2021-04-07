@@ -6,6 +6,7 @@ import {
   CurrentSong,
   getFormattedTimeFromSeconds,
 } from "../core/hooks/use-player";
+import { Typography } from "./Typography";
 
 type SoundCardProps = {
   songData: CurrentSong;
@@ -52,7 +53,7 @@ const Root = styled.div(
     transition: 0.2s;
 
     :hover {
-      color: #43d17c;
+      color: ${theme.soundCard.textForegroundHover};
       box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.08);
     }
@@ -75,7 +76,7 @@ const Left = styled.div`
   gap: 20px;
 `;
 
-const CardTitle = styled.h3<{ isPlaying?: boolean }>(
+const CardTitle = styled(Typography.H3)<{ isPlaying?: boolean }>(
   ({ theme, isPlaying }) => css`
     display: flex;
     flex-direction: column;
@@ -83,7 +84,7 @@ const CardTitle = styled.h3<{ isPlaying?: boolean }>(
 
     ${isPlaying &&
     css`
-      color: #43d17c;
+      color: ${theme.soundCard.textForegroundWhenPlaying};
     `}
   `
 );

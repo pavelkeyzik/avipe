@@ -18,23 +18,11 @@ const globalStyles = css`
     box-sizing: border-box;
   }
 
-  h2 {
-    margin: 12px 0 8px;
-  }
-
-  h3 {
-    font-weight: 300;
-  }
-
-  p {
-    margin: 4px 0;
-  }
-
   a {
-    color: white;
+    color: ${theme.link.foreground};
 
     :hover {
-      color: #43d17c;
+      color: ${theme.link.foregroundHover};
     }
   }
 `;

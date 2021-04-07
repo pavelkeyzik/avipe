@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
 import { useSongsList } from "../../core/hooks/use-songs";
+import { Typography } from "../../design-system";
 import { Button } from "../../design-system/Button";
 
 function RecentSounds() {
@@ -17,7 +18,7 @@ function RecentSounds() {
 
   return (
     <RootGrid>
-      <h2>Recent Sounds</h2>
+      <Typography.H2>Recent Sounds</Typography.H2>
       <SoundListContainer>
         <SoundPlaylist isLoading={songsList.isLoading} songs={songsList.data} />
         <SoundsFading />

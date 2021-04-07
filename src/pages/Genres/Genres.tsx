@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { MainContentLayout } from "../../components/MainContentLayout";
 import { useGenres } from "../../core/hooks/use-songs";
+import { Typography } from "../../design-system";
 
 function Genres() {
   const genresList = useGenres();
@@ -9,7 +10,7 @@ function Genres() {
   if (genresList.isLoading) {
     return (
       <RootGrid>
-        <h2>Genres</h2>
+        <Typography.H2>Genres</Typography.H2>
         <div>Loading...</div>
       </RootGrid>
     );
@@ -17,7 +18,7 @@ function Genres() {
 
   return (
     <RootGrid>
-      <h2>Genres</h2>
+      <Typography.H2>Genres</Typography.H2>
       <GenresGrid>
         {genresList.data.map((genre: any) => (
           <GenreGridItem to={`/genres/${genre.id}`}>{genre.name}</GenreGridItem>

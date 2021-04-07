@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { MainContentLayout } from "../../components/MainContentLayout";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
 import { useGenre } from "../../core/hooks/use-songs";
+import { Typography } from "../../design-system";
 
 function SoundsByGenre() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function SoundsByGenre() {
 
   return (
     <RootGrid>
-      <h2>Sounds By Genre</h2>
+      <Typography.H2>Sounds By Genre</Typography.H2>
       <SoundPlaylist isLoading={genre.isLoading} songs={genre.data?.songs} />
     </RootGrid>
   );

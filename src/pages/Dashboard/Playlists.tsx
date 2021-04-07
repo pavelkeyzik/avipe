@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router";
 import { usePlaylists } from "../../core/hooks/use-songs";
+import { Typography } from "../../design-system";
 import { Card } from "../../design-system/Card";
 
 const variants = {
@@ -36,7 +37,7 @@ function Playlists() {
 
   return (
     <React.Fragment>
-      <h2>Playlists</h2>
+      <Typography.H2>Playlists</Typography.H2>
       <PlaylistsCards
         isLoading={playlists.isLoading}
         playlists={playlists.data}
@@ -71,8 +72,8 @@ function PlaylistsCards(props: PlaylistsCardsProps) {
         return (
           <Card key={playlist.id} variants={itemVariants}>
             <Card.Content>
-              <h2>{playlist.name}</h2>
-              <p>{playlist.description}</p>
+              <Typography.H2>{playlist.name}</Typography.H2>
+              <Typography.P>{playlist.description}</Typography.P>
             </Card.Content>
             <Card.PlayButton onClick={openPlaylist} />
           </Card>

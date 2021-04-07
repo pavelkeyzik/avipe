@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { UserIcon } from "../components/icons/User";
 import { MainContentLayout } from "../components/MainContentLayout";
 import { useCurrentUser } from "../core/hooks/use-current-user";
+import { Typography } from "../design-system";
 import { Avatar } from "../design-system/Avatar";
 
 function Profile() {
@@ -10,7 +11,7 @@ function Profile() {
   if (currentUser.isLoading) {
     return (
       <RootGrid>
-        <h2>Profile</h2>
+        <Typography.H2>Profile</Typography.H2>
         <div>Loading...</div>
       </RootGrid>
     );
@@ -18,7 +19,7 @@ function Profile() {
 
   return (
     <RootGrid>
-      <h2>Profile</h2>
+      <Typography.H2>Profile</Typography.H2>
       <div
         style={{
           display: "flex",
@@ -34,11 +35,13 @@ function Profile() {
           )}
         </Avatar>
         <div>
-          <h1 style={{ margin: 0 }}>Hi, {currentUser.data.display_name}</h1>
-          <div>Login: {currentUser.data.id}</div>
-          <div>E-mail: {currentUser.data.email}</div>
-          <div>Followers: {currentUser.data.followers.total}</div>
-          <div>Country: {currentUser.data.country}</div>
+          <Typography.H1>Hi, {currentUser.data.display_name}</Typography.H1>
+          <Typography.P>Login: {currentUser.data.id}</Typography.P>
+          <Typography.P>E-mail: {currentUser.data.email}</Typography.P>
+          <Typography.P>
+            Followers: {currentUser.data.followers.total}
+          </Typography.P>
+          <Typography.P>Country: {currentUser.data.country}</Typography.P>
         </div>
       </div>
     </RootGrid>
