@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { useEffect, useRef, useState } from "react";
 
 const config = {
-  trackSize: "6px",
-  thumbSize: "24px",
+  trackSize: "4px",
+  thumbSize: "16px",
 };
 
 type Progress = {

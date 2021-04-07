@@ -207,7 +207,8 @@ const SongProgressTime = styled.div<{ right?: boolean }>`
 
 const VolumeContainer = styled.div`
   display: flex;
-  gap: 8;
+  align-items: center;
+  gap: 8px;
   width: 200px;
 `;
 
