@@ -143,10 +143,6 @@ async function getSongsList(limit?: number) {
   return response.data;
 }
 
-function getSongURL(id: number) {
-  return `${avipeServer}/songs/${id}/track`;
-}
-
 export const api = {
   login,
   getAccessToken,
@@ -157,5 +153,4 @@ export const api = {
   getGenres,
   getGenre,
   getSongsList,
-  getSongURL,
 };

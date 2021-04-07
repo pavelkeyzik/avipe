@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
-import { api } from "../api";
 
 momentDurationFormatSetup(moment);
 
@@ -11,6 +10,7 @@ type CurrentSong = {
   artist: string;
   duration: number;
   cover_image: string;
+  file: string;
 };
 
 type SongStatus = "idle" | "playing" | "paused" | "stopped";
@@ -107,7 +107,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   function play() {
     if (currentSong) {
-      audio.src = api.getSongURL(currentSong.id);
+      audio.src = currentSong.file;
       audio.volume = 0.5;
       audio.play();
       setStatus("playing");
