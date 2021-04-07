@@ -11,6 +11,10 @@ function Avatar(props: React.PropsWithChildren<AvatarProps>) {
 
 const Root = styled.div<AvatarProps>(
   ({ theme, variant }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
     border-radius: 50%;
     background: ${theme.avatar.background};
     overflow: hidden;

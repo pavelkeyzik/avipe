@@ -14,10 +14,6 @@ import { AuthorizedLayout } from "./components/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
 import { GlobalStyle } from "./components/GlobalStyle";
 import { Login } from "./pages/Login";
-import {
-  SpotifyAuthProvider,
-  useAuthState,
-} from "./core/hooks/use-spotify-auth";
 import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { PlayerProvider } from "./core/hooks/use-player";
@@ -25,6 +21,7 @@ import { Playlist } from "./pages/Playlist";
 import { Profile } from "./pages/Profile";
 import { Genres } from "./pages/Genres/Genres";
 import { SoundsByGenre } from "./pages/Genres/SoundsByGenre";
+import { AuthProvider, useAuthState } from "./core/hooks/use-auth";
 
 const queryClient = new QueryClient();
 
@@ -69,7 +66,7 @@ function Application() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <SpotifyAuthProvider>
+    <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -78,7 +75,7 @@ ReactDOM.render(
           </BrowserRouter>
         </ThemeProvider>
       </QueryClientProvider>
-    </SpotifyAuthProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { UserIcon } from "../components/icons/User";
 import { MainContentLayout } from "../components/MainContentLayout";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { Avatar } from "../design-system/Avatar";
@@ -26,7 +27,11 @@ function Profile() {
         }}
       >
         <Avatar variant="large">
-          <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+          {currentUser.data.images?.[0].url ? (
+            <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+          ) : (
+            <UserIcon />
+          )}
         </Avatar>
         <div>
           <h1 style={{ margin: 0 }}>Hi, {currentUser.data.display_name}</h1>

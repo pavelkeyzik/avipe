@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "../core/api";
 import { parse } from "query-string";
-import { useAuthState } from "../core/hooks/use-spotify-auth";
+import { useAuthState } from "../core/hooks/use-auth";
 import styled from "@emotion/styled";
 import { RedirectIllustration } from "../components/illustrations/Redirect";
 import { keyframes } from "@emotion/react";

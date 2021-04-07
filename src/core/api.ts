@@ -104,6 +104,23 @@ async function getUserInfo() {
   return response.data;
 }
 
+async function getAnonymouslyUserInfo() {
+  return {
+    country: "US",
+    display_name: "Anonymous User",
+    email: "anonymous@anonymous.com",
+    id: "anonymous.anonymous",
+    images: [
+      {
+        url: null,
+      },
+    ],
+    followers: {
+      total: 666,
+    },
+  };
+}
+
 async function getNewReleases() {
   const response = await axios.get(
     "https://api.spotify.com/v1/browse/new-releases?limit=4"
@@ -147,6 +164,7 @@ export const api = {
   login,
   getAccessToken,
   getUserInfo,
+  getAnonymouslyUserInfo,
   getNewReleases,
   getPlaylists,
   getPlaylist,

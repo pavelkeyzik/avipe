@@ -4,7 +4,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { useModal } from "../core/hooks/use-modal";
-import { useAuthState } from "../core/hooks/use-spotify-auth";
+import { useAuthState } from "../core/hooks/use-auth";
 import { Avatar } from "../design-system/Avatar";
 import { Button } from "../design-system/Button";
 import { Modal } from "../design-system/Modal";
@@ -14,6 +14,7 @@ import { LogoBlackIcon } from "./icons/LogoBlack";
 import { PowerIcon } from "./icons/Power";
 import { SoundIcon } from "./icons/Sound";
 import { TargetIcon } from "./icons/Target";
+import { UserIcon } from "./icons/User";
 
 function AuthorizedLayout(props: React.PropsWithChildren<any>) {
   const modalState = useModal();
@@ -61,7 +62,11 @@ function AuthorizedLayout(props: React.PropsWithChildren<any>) {
         {currentUser.data ? (
           <CurrentUserInfo onClick={openRouteProfile}>
             <Avatar>
-              <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+              {currentUser.data.images?.[0].url ? (
+                <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+              ) : (
+                <UserIcon />
+              )}
             </Avatar>
             <p>{currentUser.data.display_name}</p>
             <SignOutButton onClick={handleSignOutClick}>
@@ -151,6 +156,7 @@ const CurrentUserInfo = styled.div`
   pointer-events: all;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   background: rgba(22, 22, 31, 0.9);
   padding: 8px;

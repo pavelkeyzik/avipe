@@ -1,19 +1,34 @@
 import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { SpotifyIcon } from "../components/icons/Spotify";
+import { UserIcon } from "../components/icons/User";
 import { api } from "../core/api";
+import { useAuthState } from "../core/hooks/use-auth";
 import { Button } from "../design-system/Button";
 
 function Login() {
+  const authState = useAuthState();
+
   return (
     <Root>
       <BackgroundImage src="/login-background.jpg" alt="Background" />
       <ContentContainer>
-        <h1>👋 We're ready to see you</h1>
-        <p>To use Avipe you need to sign in using Spotify account</p>
+        <h1 style={{ marginBottom: 10 }}>👋 We're ready to see you</h1>
+        <p style={{ maxWidth: 500, marginBottom: 30 }}>
+          To use Avipe you need to sign in using your Spotify account or you can
+          simply use it anonymously
+        </p>
         <FormFooter>
           <Button shape="square" onClick={api.login}>
-            <SpotifyIcon /> Sign In
+            <SpotifyIcon /> Sign In using Spotify
+          </Button>
+          <span>OR</span>
+          <Button
+            shape="square"
+            variant="outlined"
+            onClick={authState.signInAnonymously}
+          >
+            <UserIcon /> Sign In Anonymously
           </Button>
         </FormFooter>
       </ContentContainer>
@@ -85,7 +100,9 @@ const ContentContainer = styled.div(
 const FormFooter = styled.div`
   margin-top: 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  /* flex-direction: column; */
   flex-grow: 1;
 `;
 

@@ -19,8 +19,8 @@ const theme = {
     textForegroundHover: "#a792fd",
   },
   button: {
-    background: "#fdfdfe",
-    backgroundHover: "#edebff",
+    background: "#fff",
+    backgroundHover: "#f2f2f2",
     foreground: "#403c65",
   },
   input: {
