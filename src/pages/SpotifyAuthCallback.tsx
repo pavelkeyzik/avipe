@@ -65,9 +65,12 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  gap: 40px;
   height: 100vh;
   overflow: hidden;
+
+  & > *:not(:last-child) {
+    margin-bottom: 40px;
+  }
 
   ::after {
     position: absolute;

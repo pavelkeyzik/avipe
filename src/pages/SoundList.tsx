@@ -27,7 +27,10 @@ function SoundList() {
 const RootGrid = styled(MainContentLayout)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
 `;
 
 export { SoundList };

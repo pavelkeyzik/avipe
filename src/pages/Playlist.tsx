@@ -169,7 +169,10 @@ const PlayButton = styled(Button)`
 const SongsGrid = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
 `;
 
 export { Playlist };

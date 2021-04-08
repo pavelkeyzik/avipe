@@ -135,8 +135,11 @@ const SoundInfoRoot = styled.div`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
   flex-shrink: 0;
+
+  & > *:not(:last-child) {
+    margin-right: 20px;
+  }
 `;
 
 const SoundInfo = styled.div`
@@ -163,9 +166,12 @@ const PlayerControls = styled.div`
   display: flex;
   flex: 1;
   flex-shrink: 0;
-  gap: 12px;
   justify-content: flex-end;
   align-items: center;
+
+  & > *:not(:first-child) {
+    margin-left: 12px;
+  }
 `;
 
 const PlayButton = styled.button`
@@ -201,11 +207,14 @@ const SongProgress = styled.div(
     @media (min-width: ${theme.tokens.breakpoints.md}) {
       display: flex;
       flex: 6;
-      gap: 20px;
       width: 100%;
       max-width: 1200px;
       align-items: center;
       padding: 0 64px;
+
+      & > *:not(:last-child) {
+        margin-right: 20px;
+      }
     }
   `
 );
@@ -225,11 +234,14 @@ const VolumeContainer = styled.div(
   ({ theme }) => css`
     display: none;
 
-    @media (min-width: ${theme.tokens.breakpoints.md}) {
+    @media (min-width: ${theme.tokens.breakpoints.lg}) {
       display: flex;
       align-items: center;
-      gap: 8px;
       width: 200px;
+
+      & > *:not(:last-child) {
+        margin-right: 8px;
+      }
     }
   `
 );

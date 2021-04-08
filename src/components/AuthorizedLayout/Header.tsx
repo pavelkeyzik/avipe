@@ -7,7 +7,8 @@ import { useModal } from "../../core/hooks/use-modal";
 import { useAuthState } from "../../core/hooks/use-auth";
 import { PowerIcon } from "../icons/Power";
 import { UserIcon } from "../icons/User";
-import { Avatar, Button, Modal, Typography } from "../../design-system";
+import { Avatar } from "../../design-system";
+import { SignOutModal } from "./SignOutModal";
 
 function Header() {
   const currentUser = useCurrentUser();
@@ -45,47 +46,41 @@ function Header() {
           </CurrentUserInfo>
         ) : null}
       </Root>
-      <Modal visible={modalState.visible}>
-        <Typography.H1>Sign Out</Typography.H1>
-        <Typography.P>Are you sure you want to Sign Out?</Typography.P>
-        <ModalContent>
-          <Button variant="outlined" shape="square" onClick={modalState.close}>
-            Cancel
-          </Button>
-          <Button shape="square" onClick={authState.signOut}>
-            Sign Out
-          </Button>
-        </ModalContent>
-      </Modal>
+      <SignOutModal
+        visible={modalState.visible}
+        onCancel={modalState.close}
+        onOk={authState.signOut}
+      />
     </React.Fragment>
   );
 }
 
 const Root = styled.div(
   ({ theme }) => css`
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 16px 48px;
-    position: fixed;
-    z-index: ${theme.layerManager.header};
-    top: 0;
-    right: 0;
-    width: 100%;
-
-    ::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 160px;
-      z-index: -1;
-    }
+    display: none;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 48px;
+      position: fixed;
+      z-index: ${theme.layerManager.header};
+      top: 0;
+      right: 0;
+      width: 100%;
+
+      ::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 160px;
+        z-index: -1;
+      }
+
       justify-content: flex-end;
     }
   `
@@ -96,13 +91,16 @@ const CurrentUserInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   background: rgba(22, 22, 31, 0.9);
   padding: 8px;
   border-radius: 200px;
   cursor: pointer;
   transition: 0.2s;
   color: #ddd;
+
+  & > *:not(:last-child) {
+    margin-right: 20px;
+  }
 
   :hover {
     color: #fff;
@@ -127,13 +125,6 @@ const SignOutButton = styled.button`
     background: white;
     color: #000;
   }
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 20px;
 `;
 
 export { Header };

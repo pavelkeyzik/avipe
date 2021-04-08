@@ -36,7 +36,10 @@ const RootGrid = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
 `;
 
 const MoreSoundsContainer = styled.div`

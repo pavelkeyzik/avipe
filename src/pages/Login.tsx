@@ -120,11 +120,18 @@ const FormFooter = styled.div(
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
     flex-grow: 1;
+
+    & > *:not(:last-child) {
+      margin-bottom: 20px;
+    }
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
       flex-direction: row;
+
+      & > *:not(:last-child) {
+        margin-right: 20px;
+      }
     }
   `
 );

@@ -45,12 +45,15 @@ function SoundCard(props: SoundCardProps) {
 const Root = styled.div(
   ({ theme }) => css`
     display: flex;
-    gap: 20px;
     align-items: center;
     border-radius: 8px;
     cursor: pointer;
     color: ${theme.soundCard.textForeground};
     transition: 0.2s;
+
+    & > *:not(:last-child) {
+      margin-right: 20px;
+    }
 
     :hover {
       color: ${theme.soundCard.textForegroundHover};

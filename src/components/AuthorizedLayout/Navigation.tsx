@@ -5,6 +5,7 @@ import { DashboardIcon } from "../icons/Dashboard";
 import { LogoBlackIcon } from "../icons/LogoBlack";
 import { SoundIcon } from "../icons/Sound";
 import { TargetIcon } from "../icons/Target";
+import { UserIcon } from "../icons/User";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -30,6 +31,10 @@ function Navigation() {
         <NavLink to="/genres" activeClassName="active">
           <TargetIcon />
           <span>Genres</span>
+        </NavLink>
+        <NavLink to="/profile" activeClassName="active">
+          <UserIcon />
+          <span>Profile</span>
         </NavLink>
       </NavigationLinks>
     </Root>
@@ -75,14 +80,14 @@ const LogoContainer = styled.div(
 
 const NavigationLinks = styled.div(
   ({ theme }) => css`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     min-height: 60px;
 
     a {
       display: flex;
       justify-content: center;
-      gap: 20px;
       padding: 0 40px;
       align-items: center;
       height: 100%;
@@ -99,11 +104,17 @@ const NavigationLinks = styled.div(
     }
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
+      display: grid;
+      justify-content: flex-start;
       grid-template-columns: unset;
       grid-auto-rows: 80px;
 
       a {
         justify-content: flex-start;
+
+        & > *:not(:last-child) {
+          margin-right: 40px;
+        }
 
         span {
           display: inline-block;
