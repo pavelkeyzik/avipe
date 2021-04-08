@@ -69,8 +69,9 @@ function SoundPlaylist(props: SoundPlaylistProps) {
 }
 
 const SoundsGridList = styled(motion.div)`
-  display: grid;
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 function Fallback() {

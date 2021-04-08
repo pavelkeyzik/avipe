@@ -167,8 +167,9 @@ const PlayButton = styled(Button)`
 `;
 
 const SongsGrid = styled.div`
-  display: grid;
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export { Playlist };

@@ -1,7 +1,14 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-const MainContentLayout = styled.div`
-  padding: 100px 48px 140px;
-`;
+const MainContentLayout = styled.div(
+  ({ theme }) => css`
+    padding: 100px ${theme.tokens.spacing[3]} 140px;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      padding: 100px ${theme.tokens.spacing[6]} 140px;
+    }
+  `
+);
 
 export { MainContentLayout };

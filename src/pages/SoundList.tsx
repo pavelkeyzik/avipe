@@ -25,8 +25,9 @@ function SoundList() {
 }
 
 const RootGrid = styled(MainContentLayout)`
-  display: grid;
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export { SoundList };

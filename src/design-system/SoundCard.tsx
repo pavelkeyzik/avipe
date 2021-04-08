@@ -21,23 +21,23 @@ function SoundCard(props: SoundCardProps) {
 
   return (
     <Root onClick={handleClick}>
-      <Left>
-        <ImageContainer>
-          {props.isPlaying ? (
-            <PlayingStatus>
-              <Volume2Icon />
-            </PlayingStatus>
-          ) : null}
-          <img src={props.songData.cover_image} alt="Sound Cover" />
-        </ImageContainer>
-        <CardTitle isPlaying={props.isPlaying}>
-          <b>{props.songData.name || "Unknown"}</b>
-          <span>{props.songData.artist || "Unknown"}</span>
-        </CardTitle>
-      </Left>
-      {props.songData.duration ? (
-        <Time>{getFormattedTimeFromSeconds(props.songData.duration)}</Time>
-      ) : null}
+      <ImageContainer>
+        {props.isPlaying ? (
+          <PlayingStatus>
+            <Volume2Icon />
+          </PlayingStatus>
+        ) : null}
+        <img src={props.songData.cover_image} alt="Sound Cover" />
+      </ImageContainer>
+      <CardTitle isPlaying={props.isPlaying}>
+        <b>{props.songData.name || "Unknown"}</b>
+        <span>{props.songData.artist || "Unknown"}</span>
+      </CardTitle>
+      <Time>
+        {props.songData.duration
+          ? getFormattedTimeFromSeconds(props.songData.duration)
+          : null}
+      </Time>
     </Root>
   );
 }
@@ -45,8 +45,8 @@ function SoundCard(props: SoundCardProps) {
 const Root = styled.div(
   ({ theme }) => css`
     display: flex;
+    gap: 20px;
     align-items: center;
-    justify-content: space-between;
     border-radius: 8px;
     cursor: pointer;
     color: ${theme.soundCard.textForeground};
@@ -70,29 +70,38 @@ const RootFallback = styled(Root)`
   }
 `;
 
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
 const CardTitle = styled(Typography.H3)<{ isPlaying?: boolean }>(
   ({ theme, isPlaying }) => css`
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
     margin: 0;
+
+    & > * {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     ${isPlaying &&
     css`
       color: ${theme.soundCard.textForegroundWhenPlaying};
     `}
+
+    @media (max-width: ${theme.tokens.breakpoints.md}) {
+      font-size: 0.9rem;
+    }
   `
 );
 
 const ImageContainer = styled.div(
   ({ theme }) => css`
-    width: 80px;
-    height: 80px;
+    display: flex;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
     background: ${theme.soundCard.imageBackground};
     overflow: hidden;
@@ -102,6 +111,11 @@ const ImageContainer = styled.div(
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      width: 80px;
+      height: 80px;
     }
   `
 );
@@ -114,7 +128,15 @@ const ImageContainerFallback = styled.div`
 
 const Time = styled.span(
   ({ theme }) => css`
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    width: 80px;
     color: ${theme.soundCard.timeForeground};
+
+    @media (max-width: ${theme.tokens.breakpoints.md}) {
+      font-size: 0.8rem;
+    }
   `
 );
 

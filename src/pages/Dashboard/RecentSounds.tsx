@@ -34,8 +34,9 @@ function RecentSounds() {
 
 const RootGrid = styled.div`
   position: relative;
-  display: grid;
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const MoreSoundsContainer = styled.div`
