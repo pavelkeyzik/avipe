@@ -97,7 +97,11 @@ const Wrapper = styled.div(
     grid-row: 3 / 4;
     grid-column: 1 / 3;
     overflow: hidden;
-    height: 100px;
+    height: 80px;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      height: 100px;
+    }
   `
 );
 
@@ -116,8 +120,8 @@ const Footer = styled(motion.div)`
 
 const SoundImageContainer = styled.div(
   ({ theme }) => css`
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
     background: ${theme.avatar.background};
     overflow: hidden;
@@ -126,6 +130,11 @@ const SoundImageContainer = styled.div(
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      width: 60px;
+      height: 60px;
     }
   `
 );
@@ -142,13 +151,19 @@ const SoundInfoRoot = styled.div`
   }
 `;
 
-const SoundInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 200px;
-`;
+const SoundInfo = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
+
+    @media (max-width: ${theme.tokens.breakpoints.md}) {
+      font-size: 0.9rem;
+    }
+  `
+);
 
 const SoundInfoSongName = styled.h4`
   margin: 0;
@@ -169,7 +184,7 @@ const PlayerControls = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  & > *:not(:first-child) {
+  & > *:not(:first-of-type) {
     margin-left: 12px;
   }
 `;
