@@ -65,7 +65,7 @@ const LogoContainer = styled.div(
       display: flex;
       padding: 0 40px;
       align-items: center;
-      color: #43d17c;
+      color: ${theme.tokens.colors.primary};
       height: 100%;
       cursor: pointer;
       transition: 0.2s;

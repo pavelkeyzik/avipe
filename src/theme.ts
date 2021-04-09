@@ -36,11 +36,13 @@ const theme = {
   },
   soundCard: {
     backgroundHover: "rgba(255, 255, 255, 0.1)",
-    imageBackground: "#0f0f16",
+    imageBackground: "rgba(255, 255, 255, 0.04)",
     timeForeground: "rgba(255, 255, 255, 0.5)",
     textForeground: tokens.colors.white,
     textForegroundHover: tokens.colors.primary,
     textForegroundWhenPlaying: tokens.colors.primary,
+    playngStatusForeground: tokens.colors.white,
+    playngStatusBackground: "rgba(0, 0, 0, 0.4)",
   },
   button: {
     background: "#fff",

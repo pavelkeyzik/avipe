@@ -123,11 +123,13 @@ const ImageContainer = styled.div(
   `
 );
 
-const ImageContainerFallback = styled.div`
-  width: 80px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.04);
-`;
+const ImageContainerFallback = styled.div(
+  ({ theme }) => css`
+    width: 80px;
+    height: 80px;
+    background: ${theme.soundCard.imageBackground};
+  `
+);
 
 const Time = styled.span(
   ({ theme }) => css`
@@ -143,18 +145,20 @@ const Time = styled.span(
   `
 );
 
-const PlayingStatus = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-`;
+const PlayingStatus = styled.div(
+  ({ theme }) => css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ${theme.soundCard.playngStatusBackground};
+    color: ${theme.soundCard.playngStatusForeground};
+  `
+);
 
 function SoundCardFallback() {
   return (

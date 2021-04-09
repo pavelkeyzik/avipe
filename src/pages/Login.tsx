@@ -131,6 +131,7 @@ const FormFooter = styled.div(
 
       & > *:not(:last-child) {
         margin-right: 20px;
+        margin-bottom: 0;
       }
     }
   `

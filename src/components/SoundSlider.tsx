@@ -147,7 +147,7 @@ const TrackProgress = styled.div<Progress>`
   width: ${(props) => `${props.progress}%`};
   height: ${config.trackSize};
   border-radius: ${config.trackSize};
-  background: #43d17c;
+  background: ${(props) => props.theme.tokens.colors.primary};
 `;
 
 const Thumb = styled.div<Progress>`
