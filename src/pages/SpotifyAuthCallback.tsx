@@ -52,7 +52,7 @@ const lightAnimation = keyframes`
   50% {
     opacity: 0.4;
   }
-  
+
   to {
     opacity: 1;
   }
@@ -65,7 +65,7 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  height: 100vh;
+  min-height: ${window.innerHeight}px;
   overflow: hidden;
 
   & > *:not(:last-child) {

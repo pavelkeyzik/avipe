@@ -31,7 +31,7 @@ const LayoutGrid = styled.div(
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 120px 1fr;
-    height: 100vh;
+    min-height: ${window.innerHeight}px;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
       grid-template-columns: 2fr 10fr;

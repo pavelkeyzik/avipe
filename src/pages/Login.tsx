@@ -21,16 +21,18 @@ function Login() {
           simply use it anonymously
         </Typography.P>
         <FormFooter>
-          <Button shape="square" onClick={api.login}>
-            <SpotifyIcon /> Sign In using Spotify
-          </Button>
-          <Button
+          <ButtonWithIcon shape="square" onClick={api.login}>
+            <SpotifyIcon />
+            <span>Sign In using Spotify</span>
+          </ButtonWithIcon>
+          <ButtonWithIcon
             shape="square"
             variant="outlined"
             onClick={authState.signInAnonymously}
           >
-            <UserIcon /> Sign In Anonymously
-          </Button>
+            <UserIcon />
+            <span>Sign In Anonymously</span>
+          </ButtonWithIcon>
         </FormFooter>
       </ContentContainer>
       <BackgroundImageInfo>
@@ -47,15 +49,34 @@ function Login() {
   );
 }
 
-const Root = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-`;
+const ButtonWithIcon = styled(Button)(
+  ({ theme }) => css`
+    width: 100%;
+
+    & > *:not(:last-child) {
+      margin-right: ${theme.tokens.spacing[2]};
+    }
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      width: unset;
+    }
+  `
+);
+
+const Root = styled.div(
+  ({ theme }) => css`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: ${window.innerHeight}px;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      justify-content: center;
+    }
+  `
+);
 
 const backgroundImageScaleAnimation = keyframes`
   from {

@@ -44,7 +44,7 @@ const RootContainer = styled(motion.div)<ModalProps>(
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    min-height: ${window.innerHeight}px;
     z-index: ${theme.layerManager.modals};
     display: flex;
     justify-content: center;
