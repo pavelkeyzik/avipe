@@ -25,6 +25,10 @@ const globalStyles = css`
       color: ${theme.link.foregroundHover};
     }
   }
+
+  img {
+    vertical-align: middle;
+  }
 `;
 
 function GlobalStyle() {

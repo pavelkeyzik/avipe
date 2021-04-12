@@ -1,26 +1,24 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { useBreakpoints } from "../../core/hooks/use-breakpoints";
 import {
   getFormattedTimeFromSeconds,
   usePlayer,
-} from "../../core/hooks/use-player";
-import { PauseIcon } from "../icons/Pause";
-import { PlayIcon } from "../icons/Play";
-import { SkipBackIcon } from "../icons/SkipBack";
-import { SkipForwardIcon } from "../icons/SkipForward";
-import { Volume1Icon } from "../icons/Volume1";
-import { Volume2Icon } from "../icons/Volume2";
-import { VolumeXIcon } from "../icons/VolumeX";
-import { SoundSlider } from "../SoundSlider";
+} from "../../../core/hooks/use-player";
+import { PauseIcon } from "../../icons/Pause";
+import { PlayIcon } from "../../icons/Play";
+import { SkipBackIcon } from "../../icons/SkipBack";
+import { SkipForwardIcon } from "../../icons/SkipForward";
+import { Volume1Icon } from "../../icons/Volume1";
+import { Volume2Icon } from "../../icons/Volume2";
+import { VolumeXIcon } from "../../icons/VolumeX";
+import { SoundSlider } from "../../SoundSlider";
 
-function CurrentSongInformation() {
+function CurrentSongInformationDesktop() {
   const player = usePlayer();
-  const breakpoints = useBreakpoints();
   const variants = {
     hidden: { opacity: 0, bottom: "-100px" },
-    visible: { opacity: 1, bottom: breakpoints.isMd ? 0 : 60 },
+    visible: { opacity: 1, bottom: 0 },
   };
 
   if (!player.currentSong) {
@@ -93,30 +91,23 @@ function CurrentSongInformation() {
 const Footer = styled(motion.div)(
   ({ theme }) => css`
     position: fixed;
-    bottom: 60px;
+    z-index: ${theme.layerManager.player};
+    bottom: 0;
     left: 0;
     width: 100%;
-    z-index: calc(${theme.layerManager.navigation} + 1);
     background: #2d2d35;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px;
-    height: 70px;
-
-    @media (min-width: ${theme.tokens.breakpoints.md}) {
-      z-index: ${theme.layerManager.player};
-      padding: 0 48px 0 20px;
-      bottom: 0;
-      height: 100px;
-    }
+    padding: 0 48px 0 20px;
+    height: 100px;
   `
 );
 
 const SoundImageContainer = styled.div(
   ({ theme }) => css`
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
     background: ${theme.avatar.background};
     overflow: hidden;
@@ -125,11 +116,6 @@ const SoundImageContainer = styled.div(
       object-fit: cover;
       width: 100%;
       height: 100%;
-    }
-
-    @media (min-width: ${theme.tokens.breakpoints.md}) {
-      width: 60px;
-      height: 60px;
     }
   `
 );
@@ -146,20 +132,13 @@ const SoundInfoRoot = styled.div`
   }
 `;
 
-const SoundInfo = styled.div(
-  ({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 140px;
-
-    @media (max-width: ${theme.tokens.breakpoints.md}) {
-      font-size: 0.9em;
-      max-width: 200px;
-    }
-  `
-);
+const SoundInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 140px;
+`;
 
 const SoundInfoSongName = styled.h4`
   margin: 0;
@@ -185,44 +164,31 @@ const PlayerControls = styled.div`
   }
 `;
 
-const PlayButton = styled.button(
-  ({ theme }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    font-family: inherit;
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    cursor: pointer;
+const PlayButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-family: inherit;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  cursor: pointer;
+`;
 
-    @media (min-width: ${theme.tokens.breakpoints.md}) {
-      width: 50px;
-      height: 50px;
-    }
-  `
-);
-
-const IconButton = styled.button(
-  ({ theme }) => css`
-    display: none;
-
-    @media (min-width: ${theme.tokens.breakpoints.md}) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      font-family: inherit;
-      cursor: pointer;
-      color: white;
-    }
-  `
-);
+const IconButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+`;
 
 const SongProgress = styled.div(
   ({ theme }) => css`
@@ -270,4 +236,4 @@ const VolumeContainer = styled.div(
   `
 );
 
-export { CurrentSongInformation };
+export { CurrentSongInformationDesktop };
