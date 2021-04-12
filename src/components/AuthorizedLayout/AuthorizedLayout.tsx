@@ -45,12 +45,14 @@ const Main = styled.div(
     grid-row: 1 / 3;
     grid-column: 1 / 3;
     overflow-y: scroll;
+    padding-bottom: 80px;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
+      padding-bottom: 100px;
       grid-column: 2 / 3;
     }
   `

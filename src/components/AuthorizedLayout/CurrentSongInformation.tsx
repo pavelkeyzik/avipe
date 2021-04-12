@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import { useBreakpoints } from "../../core/hooks/use-breakpoints";
 import {
   getFormattedTimeFromSeconds,
   usePlayer,
@@ -16,9 +17,10 @@ import { SoundSlider } from "../SoundSlider";
 
 function CurrentSongInformation() {
   const player = usePlayer();
+  const breakpoints = useBreakpoints();
   const variants = {
     hidden: { opacity: 0, bottom: "-100px" },
-    visible: { opacity: 1, bottom: 0 },
+    visible: { opacity: 1, bottom: breakpoints.isMd ? 0 : 60 },
   };
 
   if (!player.currentSong) {
@@ -26,97 +28,89 @@ function CurrentSongInformation() {
   }
 
   return (
-    <Wrapper>
-      <Footer initial="hidden" animate="visible" variants={variants}>
-        <SoundInfoRoot>
-          <SoundImageContainer>
-            <img src={player.currentSong.cover_image} alt="Sound Cover" />
-          </SoundImageContainer>
-          <SoundInfo>
-            <SoundInfoSongName>
-              {player.currentSong.name ?? "Unknown"}
-            </SoundInfoSongName>
-            <SoundInfoTitle>
-              {player.currentSong.artist ?? "Unknown"}
-            </SoundInfoTitle>
-          </SoundInfo>
-        </SoundInfoRoot>
-        <SongProgress>
-          <SongProgressTime right>
-            {getFormattedTimeFromSeconds(player.currentTime)}
-          </SongProgressTime>
-          <SoundSlider
-            value={player.currentTime ?? 0}
-            max={player.duration ?? 100}
-            onRelease={player.seek}
-          />
-          <SongProgressTime>
-            {getFormattedTimeFromSeconds(player.duration)}
-          </SongProgressTime>
-        </SongProgress>
-        <PlayerControls>
-          <VolumeContainer>
-            {player.currentVolume === 0 ? (
-              <VolumeXIcon />
-            ) : player.currentVolume && player.currentVolume >= 50 ? (
-              <Volume2Icon />
-            ) : (
-              <Volume1Icon />
-            )}
-            <SoundSlider
-              value={player.currentVolume ?? 0}
-              max={100}
-              onChange={player.changeVolume}
-            />
-          </VolumeContainer>
-          <IconButton onClick={player.prev}>
-            <SkipBackIcon />
-          </IconButton>
-          {player.status === "playing" ? (
-            <PlayButton onClick={player.pause}>
-              <PauseIcon />
-            </PlayButton>
+    <Footer initial="hidden" animate="visible" variants={variants}>
+      <SoundInfoRoot>
+        <SoundImageContainer>
+          <img src={player.currentSong.cover_image} alt="Sound Cover" />
+        </SoundImageContainer>
+        <SoundInfo>
+          <SoundInfoSongName>
+            {player.currentSong.name ?? "Unknown"}
+          </SoundInfoSongName>
+          <SoundInfoTitle>
+            {player.currentSong.artist ?? "Unknown"}
+          </SoundInfoTitle>
+        </SoundInfo>
+      </SoundInfoRoot>
+      <SongProgress>
+        <SongProgressTime right>
+          {getFormattedTimeFromSeconds(player.currentTime)}
+        </SongProgressTime>
+        <SoundSlider
+          value={player.currentTime ?? 0}
+          max={player.duration ?? 100}
+          onRelease={player.seek}
+        />
+        <SongProgressTime>
+          {getFormattedTimeFromSeconds(player.duration)}
+        </SongProgressTime>
+      </SongProgress>
+      <PlayerControls>
+        <VolumeContainer>
+          {player.currentVolume === 0 ? (
+            <VolumeXIcon />
+          ) : player.currentVolume && player.currentVolume >= 50 ? (
+            <Volume2Icon />
           ) : (
-            <PlayButton onClick={player.resume}>
-              <PlayIcon />
-            </PlayButton>
+            <Volume1Icon />
           )}
-          <IconButton onClick={player.next}>
-            <SkipForwardIcon />
-          </IconButton>
-        </PlayerControls>
-      </Footer>
-    </Wrapper>
+          <SoundSlider
+            value={player.currentVolume ?? 0}
+            max={100}
+            onChange={player.changeVolume}
+          />
+        </VolumeContainer>
+        <IconButton onClick={player.prev}>
+          <SkipBackIcon />
+        </IconButton>
+        {player.status === "playing" ? (
+          <PlayButton onClick={player.pause}>
+            <PauseIcon />
+          </PlayButton>
+        ) : (
+          <PlayButton onClick={player.resume}>
+            <PlayIcon />
+          </PlayButton>
+        )}
+        <IconButton onClick={player.next}>
+          <SkipForwardIcon />
+        </IconButton>
+      </PlayerControls>
+    </Footer>
   );
 }
 
-const Wrapper = styled.div(
+const Footer = styled(motion.div)(
   ({ theme }) => css`
-    position: relative;
-    z-index: ${theme.layerManager.player};
-    grid-row: 3 / 4;
-    grid-column: 1 / 3;
-    overflow: hidden;
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    z-index: calc(${theme.layerManager.navigation} + 1);
+    background: #2d2d35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px 0 20px;
     height: 80px;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
+      z-index: ${theme.layerManager.player};
+      bottom: 0;
       height: 100px;
     }
   `
 );
-
-const Footer = styled(motion.div)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #2d2d35;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px 0 20px;
-`;
 
 const SoundImageContainer = styled.div(
   ({ theme }) => css`

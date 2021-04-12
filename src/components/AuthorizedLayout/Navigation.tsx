@@ -43,14 +43,21 @@ function Navigation() {
 
 const Root = styled.div(
   ({ theme }) => css`
-    position: relative;
-    z-index: ${theme.layerManager.navigation};
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: calc(${theme.layerManager.player} + 1);
     grid-row: 4 / 5;
     grid-column: 1 / 2;
     background: ${theme.body.background};
     background: #0f0f16;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
+      z-index: ${theme.layerManager.player};
+      position: relative;
+      height: 100%;
       grid-row: 1 / 4;
       grid-column: 0 / 1;
     }
@@ -88,7 +95,6 @@ const NavigationLinks = styled.div(
     a {
       display: flex;
       justify-content: center;
-      padding: 0 40px;
       align-items: center;
       height: 100%;
       color: rgba(255, 255, 255, 0.5);
@@ -111,6 +117,7 @@ const NavigationLinks = styled.div(
 
       a {
         justify-content: flex-start;
+        padding: 0 40px;
 
         & > *:not(:last-child) {
           margin-right: 40px;
