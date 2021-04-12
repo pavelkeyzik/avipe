@@ -94,7 +94,7 @@ const CardTitle = styled(Typography.H3)<{ isPlaying?: boolean }>(
     `}
 
     @media (max-width: ${theme.tokens.breakpoints.md}) {
-      font-size: 0.9rem;
+      font-size: 0.9em;
     }
   `
 );
@@ -140,7 +140,7 @@ const Time = styled.span(
     color: ${theme.soundCard.timeForeground};
 
     @media (max-width: ${theme.tokens.breakpoints.md}) {
-      font-size: 0.8rem;
+      font-size: 0.8em;
     }
   `
 );

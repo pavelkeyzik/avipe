@@ -160,7 +160,7 @@ const SoundInfo = styled.div(
     max-width: 200px;
 
     @media (max-width: ${theme.tokens.breakpoints.md}) {
-      font-size: 0.9rem;
+      font-size: 0.9em;
     }
   `
 );

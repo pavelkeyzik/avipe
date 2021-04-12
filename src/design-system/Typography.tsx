@@ -28,10 +28,10 @@ const H3 = styled.h3(
 const P = styled.p(
   ({ theme }) => css`
     margin: ${theme.tokens.spacing[2]} 0;
-    font-size: 0.9rem;
+    font-size: 0.9em;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
-      font-size: 1rem;
+      font-size: 1em;
     }
   `
 );
