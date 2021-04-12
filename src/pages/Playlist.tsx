@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { PropsWithChildren } from "react";
@@ -75,7 +76,7 @@ function Playlist() {
             variants={variantsPlayButton}
           >
             <PlayButton onClick={playPlaylist}>
-              <PlayCircleIcon /> Listen Songs
+              <PlayCircleIcon /> <span>Listen Songs</span>
             </PlayButton>
           </motion.div>
         ) : null}
@@ -120,14 +121,21 @@ function TextWithAnimation(props: PropsWithChildren<TextWithAnimationProps>) {
     </motion.div>
   );
 }
-const PlaylistHeader = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 360px;
-`;
+const PlaylistHeader = styled.div(
+  ({ theme }) => css`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    padding: 20px;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      min-height: 360px;
+    }
+  `
+);
 
 const ImageContainer = styled(motion.div)`
   position: absolute;
@@ -164,6 +172,10 @@ const Title = styled(Typography.H1)`
 
 const PlayButton = styled(Button)`
   margin-top: 32px;
+
+  & > *:not(:last-child) {
+    margin-right: 6px;
+  }
 `;
 
 const SongsGrid = styled.div`

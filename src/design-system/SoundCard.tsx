@@ -123,10 +123,8 @@ const ImageContainer = styled.div(
   `
 );
 
-const ImageContainerFallback = styled.div(
+const ImageContainerFallback = styled(ImageContainer)(
   ({ theme }) => css`
-    width: 80px;
-    height: 80px;
     background: ${theme.soundCard.imageBackground};
   `
 );

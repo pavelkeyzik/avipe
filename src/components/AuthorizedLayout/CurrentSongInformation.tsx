@@ -152,10 +152,11 @@ const SoundInfo = styled.div(
     flex-direction: column;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 200px;
+    max-width: 140px;
 
     @media (max-width: ${theme.tokens.breakpoints.md}) {
       font-size: 0.9em;
+      max-width: 200px;
     }
   `
 );
