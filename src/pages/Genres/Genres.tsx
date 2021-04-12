@@ -36,9 +36,13 @@ const RootGrid = styled(MainContentLayout)`
 `;
 
 const GenresGrid = styled.div`
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+
+  & > :not(:last-child) {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const GenreGridItem = styled(Link)`
