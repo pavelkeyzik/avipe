@@ -45,7 +45,7 @@ const Main = styled.div(
     grid-row: 1 / 3;
     grid-column: 1 / 3;
     overflow-y: scroll;
-    padding-bottom: 80px;
+    padding-bottom: 130px;
 
     &::-webkit-scrollbar {
       display: none;

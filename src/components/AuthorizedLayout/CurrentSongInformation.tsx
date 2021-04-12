@@ -101,11 +101,12 @@ const Footer = styled(motion.div)(
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 48px 0 20px;
-    height: 80px;
+    padding: 0 16px;
+    height: 70px;
 
     @media (min-width: ${theme.tokens.breakpoints.md}) {
       z-index: ${theme.layerManager.player};
+      padding: 0 48px 0 20px;
       bottom: 0;
       height: 100px;
     }
@@ -183,31 +184,44 @@ const PlayerControls = styled.div`
   }
 `;
 
-const PlayButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  font-family: inherit;
-  width: 50px;
-  height: 50px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  cursor: pointer;
-`;
+const PlayButton = styled.button(
+  ({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-family: inherit;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    cursor: pointer;
 
-const IconButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  font-family: inherit;
-  cursor: pointer;
-  color: white;
-`;
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      width: 50px;
+      height: 50px;
+    }
+  `
+);
+
+const IconButton = styled.button(
+  ({ theme }) => css`
+    display: none;
+
+    @media (min-width: ${theme.tokens.breakpoints.md}) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      color: white;
+    }
+  `
+);
 
 const SongProgress = styled.div(
   ({ theme }) => css`

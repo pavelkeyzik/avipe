@@ -170,6 +170,9 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
     setSongsQueue(queue);
     setCurrentSong(selectedSong);
+
+    // Just for Safari
+    audio.play();
   }
 
   function next() {
