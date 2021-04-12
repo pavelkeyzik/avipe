@@ -35,13 +35,18 @@ type PlayButtonProps = {
 function PlayButton(props: PlayButtonProps) {
   return (
     <PlayButtonRoot onClick={props.onClick}>
-      Play Now <PlayCircleIcon />
+      <span>Play Now</span>
+      <PlayCircleIcon />
     </PlayButtonRoot>
   );
 }
 
 const PlayButtonRoot = styled(Button)`
   margin-top: 8px;
+
+  & > *:not(:last-child) {
+    margin-right: 6px;
+  }
 `;
 
 function CardFallback() {
