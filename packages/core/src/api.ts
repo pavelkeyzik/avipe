@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
 const spotify = {
-  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID || "",
-  clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET || "",
+  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID || '',
+  clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET || '',
 };
 
 const spotifyAuth = axios.create();
-const avipeServer = "https://avipe-server.herokuapp.com/api/v1";
+const avipeServer = 'https://avipe-server.herokuapp.com/api/v1';
 // const avipeServer = "http://localhost:3030/api/v1";
 
-axios.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("access_token");
+axios.interceptors.request.use(config => {
+  const accessToken = localStorage.getItem('access_token');
 
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -20,46 +20,52 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     return response;
   },
-  function (error) {
+  function(error) {
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const params = new URLSearchParams();
-      params.append("grant_type", "refresh_token");
+      params.append('grant_type', 'refresh_token');
       params.append(
-        "refresh_token",
-        localStorage.getItem("refresh_token") || ""
+        'refresh_token',
+        localStorage.getItem('refresh_token') || ''
       );
 
       return spotifyAuth
-        .post("https://accounts.spotify.com/api/token", params, {
+        .post('https://accounts.spotify.com/api/token', params, {
           headers: {
             Authorization: `Basic ${btoa(
-              spotify.clientId + ":" + spotify.clientSecret
+              spotify.clientId + ':' + spotify.clientSecret
             )}`,
-            "Content-Type": "application/x-www-form-urlencoded",
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
         })
-        .then((res) => {
+        .then(res => {
           if (res && res.status === 200) {
-            localStorage.setItem("access_token", res.data.access_token);
+            localStorage.setItem('access_token', res.data.access_token);
 
-            axios.defaults.headers.common["Authorization"] =
-              "Bearer " + localStorage.getItem("access_token");
+            axios.defaults.headers.common['Authorization'] =
+              'Bearer ' + localStorage.getItem('access_token');
 
             return axios(originalRequest);
+          } else {
+            return Promise.reject(
+              'Something bad happened while trying to refresh token'
+            );
           }
         });
+    } else {
+      return Promise.reject(error);
     }
   }
 );
 
 async function login() {
-  const scope = "user-read-private user-read-email";
+  const scope = 'user-read-private user-read-email';
   const link = `https://accounts.spotify.com/authorize?response_type=code&client_id=${encodeURIComponent(
     spotify.clientId
   )}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(
@@ -71,26 +77,26 @@ async function login() {
 
 async function getAccessToken(code: string) {
   const params = new URLSearchParams();
-  params.append("grant_type", "authorization_code");
-  params.append("code", code);
-  params.append("redirect_uri", `${window.origin}/spotify-auth-callback`);
+  params.append('grant_type', 'authorization_code');
+  params.append('code', code);
+  params.append('redirect_uri', `${window.origin}/spotify-auth-callback`);
 
   try {
     const response = await spotifyAuth.post(
-      "https://accounts.spotify.com/api/token",
+      'https://accounts.spotify.com/api/token',
       params,
       {
         headers: {
           Authorization: `Basic ${btoa(
-            spotify.clientId + ":" + spotify.clientSecret
+            spotify.clientId + ':' + spotify.clientSecret
           )}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
     );
 
-    localStorage.setItem("access_token", response.data.access_token);
-    localStorage.setItem("refresh_token", response.data.refresh_token);
+    localStorage.setItem('access_token', response.data.access_token);
+    localStorage.setItem('refresh_token', response.data.refresh_token);
 
     return true;
   } catch (err) {
@@ -99,17 +105,17 @@ async function getAccessToken(code: string) {
 }
 
 async function getUserInfo() {
-  const response = await axios.get("https://api.spotify.com/v1/me");
+  const response = await axios.get('https://api.spotify.com/v1/me');
 
   return response.data;
 }
 
 async function getAnonymouslyUserInfo() {
   return {
-    country: "US",
-    display_name: "Anonymous User",
-    email: "anonymous@anonymous.com",
-    id: "anonymous.anonymous",
+    country: 'US',
+    display_name: 'Anonymous User',
+    email: 'anonymous@anonymous.com',
+    id: 'anonymous.anonymous',
     images: [
       {
         url: null,
@@ -123,7 +129,7 @@ async function getAnonymouslyUserInfo() {
 
 async function getNewReleases() {
   const response = await axios.get(
-    "https://api.spotify.com/v1/browse/new-releases?limit=4"
+    'https://api.spotify.com/v1/browse/new-releases?limit=4'
   );
 
   return response.data;
@@ -154,7 +160,7 @@ async function getGenre(id: number) {
 }
 
 async function getSongsList(limit?: number) {
-  const queryParams = limit ? `?limit=${limit}` : "";
+  const queryParams = limit ? `?limit=${limit}` : '';
   const response = await axios.get(`${avipeServer}/songs${queryParams}`);
 
   return response.data;

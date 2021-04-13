@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { Typography } from "@avipe/design-system";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { usePlaylists } from "../../core/hooks/use-songs";
 import { Card } from "../../design-system/Card";
 

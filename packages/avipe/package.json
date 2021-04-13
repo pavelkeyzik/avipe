@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@avipe/core": "^0.1.0",
     "@avipe/design-system": "^0.1.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
