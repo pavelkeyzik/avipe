@@ -1,10 +1,10 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import React from "react";
+import { Typography } from "@avipe/design-system";
 import { useNavigate } from "react-router";
 import { usePlaylists } from "../../core/hooks/use-songs";
-import { Typography } from "../../design-system";
 import { Card } from "../../design-system/Card";
 
 const variants = {

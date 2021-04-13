@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Button } from "@avipe/design-system";
-import { Modal, Typography } from "../../design-system";
+import { Button, Typography } from "@avipe/design-system";
+import { Modal } from "../../design-system";
 
 type SignOutModalProps = {
   visible?: boolean;

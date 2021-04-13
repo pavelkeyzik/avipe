@@ -1,7 +1,8 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-function Input(props: React.ComponentPropsWithoutRef<"input">) {
+function Input(props: React.ComponentPropsWithoutRef<'input'>) {
   return (
     <Root>
       <InputBase {...props} />

@@ -1,10 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
-import { Button } from "@avipe/design-system";
+import { Button, Typography } from "@avipe/design-system";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
 import { useSongsList } from "../../core/hooks/use-songs";
-import { Typography } from "../../design-system";
 
 function RecentSounds() {
   const navigate = useNavigate();

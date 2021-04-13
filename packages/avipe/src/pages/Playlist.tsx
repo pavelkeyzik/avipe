@@ -3,13 +3,12 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { PropsWithChildren } from "react";
 import { useParams } from "react-router";
+import { Button, Typography } from "@avipe/design-system";
 import { PlayCircleIcon } from "../components/icons/PlayCircle";
 import { PlaylistContentLayout } from "../components/PlaylistContentLayout";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 import { usePlayer } from "../core/hooks/use-player";
 import { usePlaylist } from "../core/hooks/use-songs";
-import { Typography } from "../design-system";
-import { Button } from "@avipe/design-system";
 
 const variantsText = {
   hidden: { opacity: 0, y: "20px" },

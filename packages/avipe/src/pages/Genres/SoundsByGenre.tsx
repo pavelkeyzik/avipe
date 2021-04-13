@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useParams } from "react-router";
+import { Typography } from "@avipe/design-system";
 import { MainContentLayout } from "../../components/MainContentLayout";
 import { SoundPlaylist } from "../../components/SoundPlaylist";
 import { useGenre } from "../../core/hooks/use-songs";
-import { Typography } from "../../design-system";
 
 function SoundsByGenre() {
   const { id } = useParams();

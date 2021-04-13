@@ -1,12 +1,12 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Typography } from "@avipe/design-system";
 import { motion } from "framer-motion";
 import { Volume2Icon } from "../components/icons/Volume2";
 import {
   CurrentSong,
   getFormattedTimeFromSeconds,
 } from "../core/hooks/use-player";
-import { Typography } from "./Typography";
 
 type SoundCardProps = {
   songData: CurrentSong;

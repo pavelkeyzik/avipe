@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Typography } from "@avipe/design-system";
 import {
   getFormattedTimeFromSeconds,
   usePlayer,
@@ -10,7 +11,6 @@ import { PauseIcon } from "../../icons/Pause";
 import { PlayIcon } from "../../icons/Play";
 import { SoundSlider } from "../../SoundSlider";
 import { ChevronDown } from "../../icons/ChevronDown";
-import { Typography } from "../../../design-system";
 
 type SongInfoFullscreenProps = {
   visible?: boolean;
