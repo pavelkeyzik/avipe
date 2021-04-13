@@ -1,10 +1,11 @@
 import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Button } from "@avipe/design-system";
 import { SpotifyIcon } from "../components/icons/Spotify";
 import { UserIcon } from "../components/icons/User";
 import { api } from "../core/api";
 import { useAuthState } from "../core/hooks/use-auth";
-import { Button, Typography } from "../design-system";
+import { Typography } from "../design-system";
 
 function Login() {
   const authState = useAuthState();

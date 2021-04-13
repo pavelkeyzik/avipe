@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import { Button } from "@avipe/design-system";
 import React from "react";
 import { PlayCircleIcon } from "../components/icons/PlayCircle";
-import { Button } from "../design-system/Button";
 
 function Card(props: React.PropsWithChildren<any>) {
   return <CardRoot {...props} />;

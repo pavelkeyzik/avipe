@@ -1,13 +1,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Avatar } from "@avipe/design-system";
+import { Avatar, Button } from "@avipe/design-system";
 import { SignOutModal } from "../components/AuthorizedLayout/SignOutModal";
 import { UserIcon } from "../components/icons/User";
 import { MainContentLayout } from "../components/MainContentLayout";
 import { useAuthState } from "../core/hooks/use-auth";
 import { useCurrentUser } from "../core/hooks/use-current-user";
 import { useModal } from "../core/hooks/use-modal";
-import { Button, Typography } from "../design-system";
+import { Typography } from "../design-system";
 
 function Profile() {
   const currentUser = useCurrentUser();

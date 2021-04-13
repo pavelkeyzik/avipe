@@ -9,7 +9,7 @@ import { SoundPlaylist } from "../components/SoundPlaylist";
 import { usePlayer } from "../core/hooks/use-player";
 import { usePlaylist } from "../core/hooks/use-songs";
 import { Typography } from "../design-system";
-import { Button } from "../design-system/Button";
+import { Button } from "@avipe/design-system";
 
 const variantsText = {
   hidden: { opacity: 0, y: "20px" },
