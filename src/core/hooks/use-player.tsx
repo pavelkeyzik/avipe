@@ -32,6 +32,7 @@ type ContextType = {
   prev: () => void;
   seek: (time: number) => void;
   changeVolume: (time: number) => void;
+  saveVolume: (time: number) => void;
 };
 
 const PlayerContext = createContext<ContextType>({
@@ -51,6 +52,7 @@ const PlayerContext = createContext<ContextType>({
   prev: () => {},
   seek: () => {},
   changeVolume: () => {},
+  saveVolume: () => {},
 });
 
 function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
@@ -64,6 +66,20 @@ function getFormattedTimeFromSeconds(seconds?: number | null, trim?: boolean) {
   });
 
   return formattedCurrentTime;
+}
+
+function getPreferedVolume() {
+  const savedVolume = localStorage.getItem("volume");
+
+  if (savedVolume && +savedVolume && +savedVolume >= 0 && +savedVolume <= 100) {
+    return +savedVolume / 100;
+  }
+
+  return null;
+}
+
+function setPreferedVolume(value: number) {
+  localStorage.setItem("volume", String(value));
 }
 
 function PlayerProvider(props: React.PropsWithChildren<any>) {
@@ -107,8 +123,10 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
 
   function play() {
     if (currentSong) {
+      const preferedVolume = getPreferedVolume();
+
       audio.src = currentSong.file;
-      audio.volume = 0.5;
+      audio.volume = preferedVolume !== null ? preferedVolume : 0.5;
       audio.play();
       setStatus("playing");
     }
@@ -226,6 +244,10 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
     setCurrentVolume(value);
   }
 
+  function saveVolume(value: number) {
+    setPreferedVolume(value);
+  }
+
   return (
     <PlayerContext.Provider
       value={{
@@ -245,6 +267,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
         prev,
         seek,
         changeVolume,
+        saveVolume,
       }}
     >
       {props.children}

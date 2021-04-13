@@ -66,6 +66,7 @@ function CurrentSongInformationDesktop() {
             value={player.currentVolume ?? 0}
             max={100}
             onChange={player.changeVolume}
+            onRelease={player.saveVolume}
           />
         </VolumeContainer>
         <IconButton onClick={player.prev}>
