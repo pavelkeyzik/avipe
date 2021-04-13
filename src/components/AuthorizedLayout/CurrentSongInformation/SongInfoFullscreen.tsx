@@ -190,7 +190,7 @@ const PlayButton = styled.button`
 const ContentCenter = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  justify-content: center;
   flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 16px;
