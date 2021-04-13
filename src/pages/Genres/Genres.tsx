@@ -37,6 +37,7 @@ const RootGrid = styled(MainContentLayout)`
 
 const GenresGrid = styled.div`
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
 
   & > :not(:last-child) {
