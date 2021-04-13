@@ -2,12 +2,12 @@ import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "@avipe/design-system";
 import { useCurrentUser } from "../../core/hooks/use-current-user";
 import { useModal } from "../../core/hooks/use-modal";
 import { useAuthState } from "../../core/hooks/use-auth";
 import { PowerIcon } from "../icons/Power";
 import { UserIcon } from "../icons/User";
-import { Avatar } from "../../design-system";
 import { SignOutModal } from "./SignOutModal";
 
 function Header() {

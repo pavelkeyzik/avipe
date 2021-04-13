@@ -1,8 +1,9 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 type AvatarProps = {
-  variant: "small" | "large";
+  variant: 'small' | 'large';
 };
 
 function Avatar(props: React.PropsWithChildren<AvatarProps>) {
@@ -19,7 +20,7 @@ const Root = styled.div<AvatarProps>(
     background: ${theme.avatar.background};
     overflow: hidden;
 
-    ${variant === "large"
+    ${variant === 'large'
       ? css`
           width: 128px;
           height: 128px;
@@ -38,7 +39,7 @@ const Root = styled.div<AvatarProps>(
 );
 
 Avatar.defaultProps = {
-  variant: "small",
+  variant: 'small',
 };
 
 export { Avatar };

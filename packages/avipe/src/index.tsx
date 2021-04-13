@@ -7,12 +7,10 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+import { ThemeProvider } from "@avipe/design-system";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "./theme";
 import { AuthorizedLayout } from "./components/AuthorizedLayout/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
-import { GlobalStyle } from "./components/GlobalStyle";
 import { Login } from "./pages/Login";
 import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -68,8 +66,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
+        <ThemeProvider>
           <BrowserRouter>
             <Application />
           </BrowserRouter>
