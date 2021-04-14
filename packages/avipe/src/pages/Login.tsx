@@ -1,10 +1,9 @@
 import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { api } from "@avipe/core";
+import { api, useAuthState } from "@avipe/core";
 import { Button, Typography } from "@avipe/design-system";
 import { SpotifyIcon } from "../components/icons/Spotify";
 import { UserIcon } from "../components/icons/User";
-import { useAuthState } from "../core/hooks/use-auth";
 
 function Login() {
   const authState = useAuthState();

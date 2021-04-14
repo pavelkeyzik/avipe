@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { ThemeProvider } from "@avipe/design-system";
+import { AuthProvider, useAuthState } from "@avipe/core";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AuthorizedLayout } from "./components/AuthorizedLayout/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
@@ -19,7 +20,6 @@ import { Playlist } from "./pages/Playlist";
 import { Profile } from "./pages/Profile";
 import { Genres } from "./pages/Genres/Genres";
 import { SoundsByGenre } from "./pages/Genres/SoundsByGenre";
-import { AuthProvider, useAuthState } from "./core/hooks/use-auth";
 
 const queryClient = new QueryClient();
 

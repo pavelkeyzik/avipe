@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { api } from "@avipe/core";
+import { api, useAuthState } from "@avipe/core";
 import { parse } from "query-string";
-import { useAuthState } from "../core/hooks/use-auth";
 import styled from "@emotion/styled";
 import { RedirectIllustration } from "../components/illustrations/Redirect";
 import { keyframes } from "@emotion/react";

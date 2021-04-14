@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
-import { api } from "@avipe/core";
-import { useAuthState } from "./use-auth";
+import { api, useAuthState } from "@avipe/core";
 
 function useCurrentUser() {
   const authState = useAuthState();
