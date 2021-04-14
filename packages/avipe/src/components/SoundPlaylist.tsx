@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { CurrentSong, usePlayer } from "../core/hooks/use-player";
+import { CurrentSong, usePlayer } from "@avipe/core";
 import { SoundCard } from "../design-system/SoundCard";
 
 type SoundPlaylistProps = {

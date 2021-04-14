@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 const SpotifyAuthContext = createContext({
   isAuthorized: false,
@@ -10,10 +10,10 @@ const SpotifyAuthContext = createContext({
 
 function AuthProvider(props: React.PropsWithChildren<any>) {
   const [isAnonymously, setIsAnonymously] = useState(
-    localStorage.getItem("is_anonymously") ? true : false
+    localStorage.getItem('is_anonymously') ? true : false
   );
   const [isAuthorized, setIsAuthorized] = useState(
-    isAnonymously || localStorage.getItem("access_token") ? true : false
+    isAnonymously || localStorage.getItem('access_token') ? true : false
   );
 
   function signIn() {
@@ -21,7 +21,7 @@ function AuthProvider(props: React.PropsWithChildren<any>) {
   }
 
   function signInAnonymously() {
-    localStorage.setItem("is_anonymously", "true");
+    localStorage.setItem('is_anonymously', 'true');
     setIsAnonymously(true);
     setIsAuthorized(true);
   }
@@ -29,9 +29,9 @@ function AuthProvider(props: React.PropsWithChildren<any>) {
   function signOut() {
     setIsAuthorized(false);
     setIsAnonymously(false);
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("is_anonymously");
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('is_anonymously');
   }
 
   return (

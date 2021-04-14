@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Typography } from "@avipe/design-system";
+import { useGenres } from "@avipe/core";
 import { MainContentLayout } from "../../components/MainContentLayout";
-import { useGenres } from "../../core/hooks/use-songs";
 
 function Genres() {
   const genresList = useGenres();

@@ -8,14 +8,13 @@ import {
   Navigate,
 } from "react-router-dom";
 import { ThemeProvider } from "@avipe/design-system";
-import { AuthProvider, useAuthState } from "@avipe/core";
+import { AuthProvider, useAuthState, PlayerProvider } from "@avipe/core";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AuthorizedLayout } from "./components/AuthorizedLayout/AuthorizedLayout";
 import { SoundList } from "./pages/SoundList";
 import { Login } from "./pages/Login";
 import { SpotifyAuthCallback } from "./pages/SpotifyAuthCallback";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { PlayerProvider } from "./core/hooks/use-player";
 import { Playlist } from "./pages/Playlist";
 import { Profile } from "./pages/Profile";
 import { Genres } from "./pages/Genres/Genres";

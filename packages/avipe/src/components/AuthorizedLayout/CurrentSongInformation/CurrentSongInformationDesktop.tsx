@@ -1,10 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import {
-  getFormattedTimeFromSeconds,
-  usePlayer,
-} from "../../../core/hooks/use-player";
+import { getFormattedTimeFromSeconds, usePlayer } from "@avipe/core";
 import { PauseIcon } from "../../icons/Pause";
 import { PlayIcon } from "../../icons/Play";
 import { SkipBackIcon } from "../../icons/SkipBack";

@@ -174,7 +174,7 @@ function PlayerProvider(props: React.PropsWithChildren<any>) {
   }
 
   // eslint-disable-next-line
-  function handleSongEnded(event: Event) {
+  function handleSongEnded() {
     next();
   }
 

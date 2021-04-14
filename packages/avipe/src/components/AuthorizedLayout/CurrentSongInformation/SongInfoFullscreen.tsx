@@ -1,10 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Typography } from "@avipe/design-system";
-import {
-  getFormattedTimeFromSeconds,
-  usePlayer,
-} from "../../../core/hooks/use-player";
+import { getFormattedTimeFromSeconds, usePlayer } from "@avipe/core";
 import { SkipBackIcon } from "../../icons/SkipBack";
 import { SkipForwardIcon } from "../../icons/SkipForward";
 import { PauseIcon } from "../../icons/Pause";
