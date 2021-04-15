@@ -3,9 +3,8 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { PropsWithChildren } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Typography } from "@avipe/design-system";
+import { Button, Typography, PlayCircleIcon } from "@avipe/design-system";
 import { usePlayer, usePlaylist } from "@avipe/core";
-import { PlayCircleIcon } from "../components/icons/PlayCircle";
 import { PlaylistContentLayout } from "../components/PlaylistContentLayout";
 import { SoundPlaylist } from "../components/SoundPlaylist";
 

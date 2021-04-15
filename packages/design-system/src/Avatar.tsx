@@ -1,13 +1,19 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { UserIcon } from './icons';
 
 type AvatarProps = {
   variant: 'small' | 'large';
+  src?: string;
 };
 
 function Avatar(props: React.PropsWithChildren<AvatarProps>) {
-  return <Root {...props} />;
+  return (
+    <Root variant={props.variant}>
+      {props.src ? <img src={props.src} alt="User Logo" /> : <UserIcon />}
+    </Root>
+  );
 }
 
 const Root = styled.div<AvatarProps>(

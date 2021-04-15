@@ -1,3 +1,5 @@
+import React from 'react';
+
 function LogoBlackIcon() {
   return (
     <svg width="128" height="54" viewBox="0 0 128 54" fill="none">

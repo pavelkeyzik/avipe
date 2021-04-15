@@ -1,13 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Typography } from "@avipe/design-system";
+import {
+  Typography,
+  SkipBackIcon,
+  SkipForwardIcon,
+  PauseIcon,
+  PlayIcon,
+  ChevronDown,
+} from "@avipe/design-system";
 import { getFormattedTimeFromSeconds, usePlayer } from "@avipe/core";
-import { SkipBackIcon } from "../../icons/SkipBack";
-import { SkipForwardIcon } from "../../icons/SkipForward";
-import { PauseIcon } from "../../icons/Pause";
-import { PlayIcon } from "../../icons/Play";
 import { SoundSlider } from "../../SoundSlider";
-import { ChevronDown } from "../../icons/ChevronDown";
 
 type SongInfoFullscreenProps = {
   visible?: boolean;

@@ -2,13 +2,15 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { getFormattedTimeFromSeconds, usePlayer } from "@avipe/core";
-import { PauseIcon } from "../../icons/Pause";
-import { PlayIcon } from "../../icons/Play";
-import { SkipBackIcon } from "../../icons/SkipBack";
-import { SkipForwardIcon } from "../../icons/SkipForward";
-import { Volume1Icon } from "../../icons/Volume1";
-import { Volume2Icon } from "../../icons/Volume2";
-import { VolumeXIcon } from "../../icons/VolumeX";
+import {
+  PauseIcon,
+  PlayIcon,
+  SkipBackIcon,
+  SkipForwardIcon,
+  Volume1Icon,
+  Volume2Icon,
+  VolumeXIcon,
+} from "@avipe/design-system";
 import { SoundSlider } from "../../SoundSlider";
 
 function CurrentSongInformationDesktop() {

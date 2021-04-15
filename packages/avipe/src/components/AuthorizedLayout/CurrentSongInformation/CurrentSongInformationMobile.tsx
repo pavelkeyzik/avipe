@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import React from "react";
 import { useModal, usePlayer } from "@avipe/core";
-import { PauseIcon } from "../../icons/Pause";
-import { PlayIcon } from "../../icons/Play";
+import { PauseIcon, PlayIcon } from "@avipe/design-system";
 import { SongInfoFullscreen } from "./SongInfoFullscreen";
 
 function withStopPropagation(callback: () => void) {

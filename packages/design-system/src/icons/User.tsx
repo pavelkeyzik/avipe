@@ -1,4 +1,6 @@
-function VolumeXIcon() {
+import React from 'react';
+
+function UserIcon() {
   return (
     <svg
       width="24"
@@ -10,11 +12,10 @@ function VolumeXIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-      <line x1="23" y1="9" x2="17" y2="15"></line>
-      <line x1="17" y1="9" x2="23" y2="15"></line>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
     </svg>
   );
 }
 
-export { VolumeXIcon };
+export { UserIcon };

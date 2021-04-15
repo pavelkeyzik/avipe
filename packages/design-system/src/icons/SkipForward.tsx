@@ -1,4 +1,6 @@
-function PowerIcon(props: React.SVGProps<SVGSVGElement>) {
+import React from 'react';
+
+function SkipForwardIcon() {
   return (
     <svg
       width="24"
@@ -9,12 +11,11 @@ function PowerIcon(props: React.SVGProps<SVGSVGElement>) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      {...props}
     >
-      <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
-      <line x1="12" y1="2" x2="12" y2="12"></line>
+      <polygon points="5 4 15 12 5 20 5 4"></polygon>
+      <line x1="19" y1="5" x2="19" y2="19"></line>
     </svg>
   );
 }
 
-export { PowerIcon };
+export { SkipForwardIcon };

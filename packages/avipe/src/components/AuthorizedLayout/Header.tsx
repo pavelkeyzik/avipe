@@ -2,10 +2,8 @@ import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "@avipe/design-system";
+import { Avatar, PowerIcon } from "@avipe/design-system";
 import { useAuthState, useCurrentUser, useModal } from "@avipe/core";
-import { PowerIcon } from "../icons/Power";
-import { UserIcon } from "../icons/User";
 import { SignOutModal } from "./SignOutModal";
 
 function Header() {
@@ -30,13 +28,7 @@ function Header() {
       <Root>
         {currentUser.data ? (
           <CurrentUserInfo onClick={openRouteProfile}>
-            <Avatar>
-              {currentUser.data.images?.[0].url ? (
-                <img src={currentUser.data.images?.[0].url} alt="User Logo" />
-              ) : (
-                <UserIcon />
-              )}
-            </Avatar>
+            <Avatar src={currentUser.data.images?.[0].url} />
             <p>{currentUser.data.display_name}</p>
             <SignOutButton onClick={handleSignOutClick}>
               <PowerIcon />

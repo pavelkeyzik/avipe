@@ -1,4 +1,6 @@
-function TargetIcon(props: React.SVGProps<SVGSVGElement>) {
+import React from 'react';
+
+function PowerIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
@@ -11,11 +13,10 @@ function TargetIcon(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <circle cx="12" cy="12" r="10"></circle>
-      <circle cx="12" cy="12" r="6"></circle>
-      <circle cx="12" cy="12" r="2"></circle>
+      <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+      <line x1="12" y1="2" x2="12" y2="12"></line>
     </svg>
   );
 }
 
-export { TargetIcon };
+export { PowerIcon };

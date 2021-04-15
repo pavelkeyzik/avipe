@@ -1,11 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { DashboardIcon } from "../icons/Dashboard";
-import { LogoBlackIcon } from "../icons/LogoBlack";
-import { SoundIcon } from "../icons/Sound";
-import { TargetIcon } from "../icons/Target";
-import { UserIcon } from "../icons/User";
+import {
+  DashboardIcon,
+  LogoBlackIcon,
+  SoundIcon,
+  TargetIcon,
+  UserIcon,
+} from "@avipe/design-system";
 
 function Navigation() {
   const navigate = useNavigate();
