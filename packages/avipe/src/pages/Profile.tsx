@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Avatar, Button, Typography, UserIcon } from "@avipe/design-system";
+import { Avatar, Button, Typography } from "@avipe/design-system";
 import { useAuthState, useCurrentUser, useModal } from "@avipe/core";
 import { SignOutModal } from "../components/AuthorizedLayout/SignOutModal";
 import { MainContentLayout } from "../components/MainContentLayout";
