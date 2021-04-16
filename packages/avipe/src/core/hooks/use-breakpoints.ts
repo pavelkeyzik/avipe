@@ -1,5 +1,5 @@
 import { useMediaQuery } from "react-responsive";
-import { theme } from "../../theme";
+import { theme } from "@avipe/design-system";
 
 function useBreakpoints() {
   const isMd = useMediaQuery({

@@ -1,5 +1,5 @@
 import { css, Global } from "@emotion/react";
-import { theme } from "../theme";
+import { theme } from "@avipe/design-system";
 
 const globalStyles = css`
   html {
