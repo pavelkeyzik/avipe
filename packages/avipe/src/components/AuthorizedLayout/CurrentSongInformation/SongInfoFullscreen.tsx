@@ -31,6 +31,8 @@ function SongInfoFullscreen(props: SongInfoFullscreenProps) {
       <Content>
         <CloseIconContainer onClick={props.onClose}>
           <ChevronDown />
+          <Typography.H3>Now Playing</Typography.H3>
+          <div />
         </CloseIconContainer>
         <ContentCenter>
           <SongCover>
@@ -199,9 +201,8 @@ const CloseIconContainer = styled.div(
   ({ theme }) => css`
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     height: 80px;
-    width: 120px;
     transform: translateX(-${theme.tokens.spacing[3]});
     padding-left: ${theme.tokens.spacing[3]};
     cursor: pointer;
