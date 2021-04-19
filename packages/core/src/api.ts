@@ -7,7 +7,6 @@ const spotify = {
 
 const spotifyAuth = axios.create();
 const avipeServer = 'https://avipe-server.herokuapp.com/api/v1';
-// const avipeServer = "http://localhost:3030/api/v1";
 
 axios.interceptors.request.use(config => {
   const accessToken = localStorage.getItem('access_token');
