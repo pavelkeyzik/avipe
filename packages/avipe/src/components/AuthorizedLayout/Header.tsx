@@ -28,7 +28,7 @@ function Header() {
       <Root>
         {currentUser.data ? (
           <CurrentUserInfo onClick={openRouteProfile}>
-            <Avatar src={currentUser.data.images?.[0].url} />
+            <Avatar src={currentUser.data.images?.[0]?.url} />
             <p>{currentUser.data.display_name}</p>
             <SignOutButton onClick={handleSignOutClick}>
               <PowerIcon />

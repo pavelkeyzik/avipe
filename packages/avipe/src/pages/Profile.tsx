@@ -23,7 +23,7 @@ function Profile() {
     <RootGrid>
       <Typography.H2>Profile</Typography.H2>
       <ProfileHeader>
-        <Avatar variant="large" src={currentUser.data.images?.[0].url} />
+        <Avatar variant="large" src={currentUser.data.images?.[0]?.url} />
         <div>
           <Typography.H1>Hi, {currentUser.data.display_name}</Typography.H1>
           <Typography.P>Login: {currentUser.data.id}</Typography.P>
