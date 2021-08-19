@@ -33,8 +33,8 @@ function Header() {
         {currentUser.data ? (
           <CurrentUserInfo onClick={openRouteProfile}>
             <Avatar>
-              {currentUser.data.images?.[0].url ? (
-                <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+              {currentUser.data.images?.[0]?.url ? (
+                <img src={currentUser.data.images?.[0]?.url} alt="User Logo" />
               ) : (
                 <UserIcon />
               )}

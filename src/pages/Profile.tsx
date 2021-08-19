@@ -28,8 +28,8 @@ function Profile() {
       <Typography.H2>Profile</Typography.H2>
       <ProfileHeader>
         <Avatar variant="large">
-          {currentUser.data.images?.[0].url ? (
-            <img src={currentUser.data.images?.[0].url} alt="User Logo" />
+          {currentUser.data.images?.[0]?.url ? (
+            <img src={currentUser.data.images?.[0]?.url} alt="User Logo" />
           ) : (
             <UserIcon />
           )}
